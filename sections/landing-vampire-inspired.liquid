@@ -1,0 +1,645 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    margin: 0;
+  }
+
+  .vampire-landing-{{ section.id }} {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    background: #000;
+    color: #fff;
+    font-family: var(--font-heading-family);
+    isolation: isolate;
+  }
+
+  .vampire-landing-{{ section.id }}__video-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .vampire-landing-{{ section.id }}__video-bg-media {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .vampire-landing-{{ section.id }}__video-bg-media video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .vampire-landing-{{ section.id }}__video-bg-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: #000;
+    pointer-events: none;
+  }
+
+  .vampire-landing-{{ section.id }}__small-copy {
+    position: absolute;
+    top: 0;
+    width: min(34rem, 42vw);
+    font-size: clamp(0.68rem, 0.9vw, 0.95rem);
+    line-height: 1.15;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    opacity: 0.96;
+    z-index: 3;
+  }
+
+  .vampire-landing-{{ section.id }}__small-copy--left {
+    left: clamp(5px, 0.9vw, 10px);
+    text-align: left;
+  }
+
+  .vampire-landing-{{ section.id }}__small-copy--right {
+    right: clamp(5px, 0.9vw, 10px);
+    text-align: right;
+  }
+
+  .vampire-landing-{{ section.id }}__wordmark {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    width: max-content;
+    filter: none;
+    opacity: 1;
+    z-index: 2;
+    color: #fff;
+  }
+
+  .vampire-landing-{{ section.id }}__wordmark-logos {
+    display: flex;
+    align-items: center;
+    gap: clamp(18px, 3vw, 44px);
+  }
+
+  .vampire-landing-{{ section.id }}__wordmark-logo-wrap {
+    position: relative;
+    width: clamp(72px, 6.8vw, 130px);
+  }
+
+  .vampire-landing-{{ section.id }}__wordmark-logo {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: blur(5.5px);
+    transition: filter 220ms ease;
+    transition-delay: 140ms;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+
+  .vampire-landing-{{ section.id }}__wordmark-logo--base {
+    opacity: 1;
+    transition: opacity 140ms ease, filter 220ms ease;
+    transition-delay: 0ms, 140ms;
+  }
+
+  .vampire-landing-{{ section.id }}__wordmark-logo--color {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 260ms ease;
+    transition-delay: 0ms;
+    pointer-events: none;
+  }
+
+  .vampire-landing-{{ section.id }}__wordmark:hover .vampire-landing-{{ section.id }}__wordmark-logo,
+  .vampire-landing-{{ section.id }}__wordmark:focus-within .vampire-landing-{{ section.id }}__wordmark-logo {
+    filter: none;
+    transition-delay: 0ms;
+  }
+
+  .vampire-landing-{{ section.id }}__wordmark:hover .vampire-landing-{{ section.id }}__wordmark-logo--base,
+  .vampire-landing-{{ section.id }}__wordmark:focus-within .vampire-landing-{{ section.id }}__wordmark-logo--base {
+    opacity: 0;
+  }
+
+  .vampire-landing-{{ section.id }}__wordmark:hover .vampire-landing-{{ section.id }}__wordmark-logo-wrap--1 .vampire-landing-{{ section.id }}__wordmark-logo--base,
+  .vampire-landing-{{ section.id }}__wordmark:focus-within .vampire-landing-{{ section.id }}__wordmark-logo-wrap--1 .vampire-landing-{{ section.id }}__wordmark-logo--base {
+    transition-delay: 160ms, 0ms;
+  }
+
+  .vampire-landing-{{ section.id }}__wordmark:hover .vampire-landing-{{ section.id }}__wordmark-logo-wrap--1 .vampire-landing-{{ section.id }}__wordmark-logo--color,
+  .vampire-landing-{{ section.id }}__wordmark:focus-within .vampire-landing-{{ section.id }}__wordmark-logo-wrap--1 .vampire-landing-{{ section.id }}__wordmark-logo--color {
+    transition-delay: 160ms;
+  }
+
+  .vampire-landing-{{ section.id }}__wordmark:hover .vampire-landing-{{ section.id }}__wordmark-logo-wrap--2 .vampire-landing-{{ section.id }}__wordmark-logo--color,
+  .vampire-landing-{{ section.id }}__wordmark:focus-within .vampire-landing-{{ section.id }}__wordmark-logo-wrap--2 .vampire-landing-{{ section.id }}__wordmark-logo--color {
+    transition-delay: 230ms;
+  }
+
+  .vampire-landing-{{ section.id }}__wordmark:hover .vampire-landing-{{ section.id }}__wordmark-logo-wrap--2 .vampire-landing-{{ section.id }}__wordmark-logo--base,
+  .vampire-landing-{{ section.id }}__wordmark:focus-within .vampire-landing-{{ section.id }}__wordmark-logo-wrap--2 .vampire-landing-{{ section.id }}__wordmark-logo--base {
+    transition-delay: 230ms, 0ms;
+  }
+
+  .vampire-landing-{{ section.id }}__wordmark-mark {
+    position: absolute;
+    left: 100%;
+    top: 4px;
+    margin-left: 2px;
+    font-size: clamp(11px, 1.1vw, 18px);
+    font-weight: 300;
+    line-height: 1;
+    color: #fff;
+    filter: none;
+    user-select: none;
+  }
+
+  .vampire-landing-{{ section.id }}__wordmark:hover .vampire-landing-{{ section.id }}__wordmark-logo-wrap--3 .vampire-landing-{{ section.id }}__wordmark-logo--color,
+  .vampire-landing-{{ section.id }}__wordmark:focus-within .vampire-landing-{{ section.id }}__wordmark-logo-wrap--3 .vampire-landing-{{ section.id }}__wordmark-logo--color {
+    transition-delay: 300ms;
+  }
+
+  .vampire-landing-{{ section.id }}__wordmark:hover .vampire-landing-{{ section.id }}__wordmark-logo-wrap--3 .vampire-landing-{{ section.id }}__wordmark-logo--base,
+  .vampire-landing-{{ section.id }}__wordmark:focus-within .vampire-landing-{{ section.id }}__wordmark-logo-wrap--3 .vampire-landing-{{ section.id }}__wordmark-logo--base {
+    transition-delay: 300ms, 0ms;
+  }
+
+  .vampire-landing-{{ section.id }}__wordmark:focus-within .vampire-landing-{{ section.id }}__wordmark-mark {
+    filter: none;
+  }
+
+  .vampire-landing-{{ section.id }}__wordmark:hover .vampire-landing-{{ section.id }}__wordmark-logo--color,
+  .vampire-landing-{{ section.id }}__wordmark:focus-within .vampire-landing-{{ section.id }}__wordmark-logo--color {
+    opacity: 1;
+  }
+
+  .vampire-landing-{{ section.id }}__cta {
+    position: absolute;
+    right: clamp(5px, 0.9vw, 12px);
+    top: clamp(28px, 3.8vw, 50px);
+    margin: 0;
+    font-size: clamp(1.2rem, 2.7vw, 3.2rem);
+    line-height: 0.9;
+    text-transform: lowercase;
+    z-index: 3;
+  }
+
+  .vampire-landing-{{ section.id }}__center-copy {
+    position: absolute;
+    left: 50%;
+    bottom: clamp(10px, 1.6vw, 20px);
+    transform: translateX(-50%);
+    margin: 0;
+    width: min(92%, 1200px);
+    font-size: clamp(3.2rem, 8.4vw, 8.8rem);
+    line-height: 0.84;
+    text-transform: uppercase;
+    text-align: center;
+    z-index: 3;
+    letter-spacing: 0.01em;
+  }
+
+  .vampire-landing-{{ section.id }}__center-main {
+    display: block;
+    font-size: 1.16em;
+    line-height: 0.82;
+  }
+
+  .vampire-landing-{{ section.id }}__tel {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 0.4em;
+    font-family: inherit;
+    text-transform: none;
+    font-style: normal;
+    font-weight: inherit;
+    font-size: 0.46em;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.04em;
+  }
+
+  .vampire-landing-{{ section.id }}__tel-meta {
+    opacity: 0.55;
+    font-size: 1em;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+  }
+
+  .vampire-landing-{{ section.id }}__tel-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .vampire-landing-{{ section.id }}__tel-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.08em;
+  }
+
+  .vampire-landing-{{ section.id }}__bottom-label {
+    position: absolute;
+    bottom: clamp(34px, 4.5vw, 64px);
+    margin: 0;
+    font-size: clamp(2.1rem, 5.7vw, 6.4rem);
+    line-height: 0.9;
+    text-transform: uppercase;
+    z-index: 3;
+  }
+
+  .vampire-landing-{{ section.id }}__bottom-label--left {
+    left: clamp(5px, 0.9vw, 10px);
+  }
+
+  .vampire-landing-{{ section.id }}__bottom-label--right {
+    right: clamp(5px, 0.9vw, 10px);
+  }
+
+  .vampire-landing-{{ section.id }}__corner-copy {
+    position: absolute;
+    bottom: clamp(3px, 0.6vw, 8px);
+    width: min(26rem, 34vw);
+    margin: 0;
+    font-size: clamp(0.66rem, 0.86vw, 0.92rem);
+    line-height: 1.12;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    z-index: 3;
+    opacity: 0.95;
+  }
+
+  .vampire-landing-{{ section.id }}__corner-copy--left {
+    left: clamp(5px, 0.9vw, 10px);
+    text-align: left;
+  }
+
+  .vampire-landing-{{ section.id }}__corner-copy--right {
+    right: clamp(5px, 0.9vw, 10px);
+    text-align: right;
+  }
+
+  @media screen and (max-width: 989px) {
+    .vampire-landing-{{ section.id }} {
+      min-height: 100svh;
+    }
+
+    .vampire-landing-{{ section.id }}__small-copy,
+    .vampire-landing-{{ section.id }}__corner-copy {
+      width: min(17rem, 47vw);
+    }
+
+    .vampire-landing-{{ section.id }}__center-copy {
+      width: min(96%, 820px);
+      bottom: clamp(10px, 1.6vw, 20px);
+      font-size: clamp(2.7rem, 9.6vw, 6rem);
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .vampire-landing-{{ section.id }}__small-copy,
+    .vampire-landing-{{ section.id }}__corner-copy {
+      display: none;
+    }
+
+    .vampire-landing-{{ section.id }}__wordmark {
+      top: 48px;
+    }
+
+    .vampire-landing-{{ section.id }}__wordmark-logos {
+      gap: 18px;
+    }
+
+    .vampire-landing-{{ section.id }}__wordmark-logo-wrap {
+      width: clamp(54px, 22vw, 96px);
+    }
+
+    .vampire-landing-{{ section.id }}__wordmark-mark {
+      font-size: clamp(9px, 3.8vw, 14px);
+      top: 2px;
+      margin-left: 2px;
+    }
+
+    .vampire-landing-{{ section.id }}__cta {
+      top: 120px;
+      right: 16px;
+      font-size: clamp(1.25rem, 7vw, 2.3rem);
+    }
+
+    .vampire-landing-{{ section.id }}__center-copy {
+      width: calc(100% - 24px);
+      bottom: 20px;
+      font-size: clamp(2.3rem, 10.2vw, 4.4rem);
+    }
+
+    .vampire-landing-{{ section.id }}__bottom-label {
+      bottom: 32px;
+      font-size: clamp(2.2rem, 12vw, 3.6rem);
+    }
+  }
+{%- endstyle -%}
+
+<section class="vampire-landing-{{ section.id }}" aria-label="{{ section.settings.aria_label | escape }}">
+  {%- liquid
+    assign bg_shopify = section.settings.background_video
+    assign bg_asset = section.settings.background_video_asset | strip
+    assign bg_visible = false
+    if bg_shopify != blank
+      assign bg_visible = true
+    elsif bg_asset != blank
+      assign bg_visible = true
+    endif
+  -%}
+  {%- if bg_visible -%}
+    <div class="vampire-landing-{{ section.id }}__video-bg" aria-hidden="true">
+      <div class="vampire-landing-{{ section.id }}__video-bg-media">
+        {%- if bg_shopify != blank -%}
+          {%- capture bg_video_markup -%}
+            {{
+              bg_shopify
+              | video_tag:
+                image_size: '3840x',
+                autoplay: true,
+                loop: section.settings.background_video_loop,
+                muted: true,
+                controls: false
+            }}
+          {%- endcapture -%}
+          {{ bg_video_markup | replace_first: '<video', '<video playsinline=""' }}
+        {%- elsif bg_asset != blank -%}
+          {%- assign bg_ext = bg_asset | split: '.' | last | downcase -%}
+          {%- liquid
+            assign bg_mime = 'video/mp4'
+            if bg_ext == 'webm'
+              assign bg_mime = 'video/webm'
+            elsif bg_ext == 'mov' or bg_ext == 'qt'
+              assign bg_mime = 'video/quicktime'
+            endif
+          -%}
+          <video
+            class="vampire-landing-{{ section.id }}__video-bg-el"
+            autoplay
+            muted
+            playsinline
+            preload="metadata"
+            {% if section.settings.background_video_loop %}loop{% endif %}
+          >
+            <source src="{{ bg_asset | asset_url }}" type="{{ bg_mime }}">
+          </video>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.background_overlay_opacity > 0 -%}
+        <div
+          class="vampire-landing-{{ section.id }}__video-bg-overlay"
+          style="opacity: {{ section.settings.background_overlay_opacity | divided_by: 100.0 }};"
+        ></div>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <p class="vampire-landing-{{ section.id }}__small-copy vampire-landing-{{ section.id }}__small-copy--left">
+    {{ section.settings.small_copy }}
+  </p>
+  <p class="vampire-landing-{{ section.id }}__small-copy vampire-landing-{{ section.id }}__small-copy--right">
+    {{ section.settings.small_copy }}
+  </p>
+
+  <h1 class="vampire-landing-{{ section.id }}__wordmark">
+    <span class="vampire-landing-{{ section.id }}__wordmark-logos">
+      <span class="vampire-landing-{{ section.id }}__wordmark-logo-wrap vampire-landing-{{ section.id }}__wordmark-logo-wrap--1">
+        <img
+          src="{{ 'logo_HS.svg' | asset_url }}"
+          alt="{{ section.settings.brand_wordmark | escape }}"
+          class="vampire-landing-{{ section.id }}__wordmark-logo vampire-landing-{{ section.id }}__wordmark-logo--base"
+          width="590"
+          height="706"
+          loading="eager"
+        >
+        <img
+          src="{{ 'logo_HS_b400ff.svg' | asset_url }}"
+          alt=""
+          aria-hidden="true"
+          class="vampire-landing-{{ section.id }}__wordmark-logo vampire-landing-{{ section.id }}__wordmark-logo--color"
+          width="590"
+          height="706"
+          loading="eager"
+        >
+      </span>
+      <span class="vampire-landing-{{ section.id }}__wordmark-logo-wrap vampire-landing-{{ section.id }}__wordmark-logo-wrap--2">
+        <img
+          src="{{ 'logo_HS.svg' | asset_url }}"
+          alt=""
+          aria-hidden="true"
+          class="vampire-landing-{{ section.id }}__wordmark-logo vampire-landing-{{ section.id }}__wordmark-logo--base"
+          width="590"
+          height="706"
+          loading="eager"
+        >
+        <img
+          src="{{ 'logo_HS_0500ff.svg' | asset_url }}"
+          alt=""
+          aria-hidden="true"
+          class="vampire-landing-{{ section.id }}__wordmark-logo vampire-landing-{{ section.id }}__wordmark-logo--color"
+          width="590"
+          height="706"
+          loading="eager"
+        >
+      </span>
+      <span class="vampire-landing-{{ section.id }}__wordmark-logo-wrap vampire-landing-{{ section.id }}__wordmark-logo-wrap--3">
+        <img
+          src="{{ 'logo_HS.svg' | asset_url }}"
+          alt=""
+          aria-hidden="true"
+          class="vampire-landing-{{ section.id }}__wordmark-logo vampire-landing-{{ section.id }}__wordmark-logo--base"
+          width="590"
+          height="706"
+          loading="eager"
+        >
+        <img
+          src="{{ 'logo_HS_05ff00.svg' | asset_url }}"
+          alt=""
+          aria-hidden="true"
+          class="vampire-landing-{{ section.id }}__wordmark-logo vampire-landing-{{ section.id }}__wordmark-logo--color"
+          width="590"
+          height="706"
+          loading="eager"
+        >
+      </span>
+    </span>
+    <span class="vampire-landing-{{ section.id }}__wordmark-mark" aria-hidden="true">&reg;</span>
+  </h1>
+  <p class="vampire-landing-{{ section.id }}__cta">{{ section.settings.top_right_label }}</p>
+
+  <p class="vampire-landing-{{ section.id }}__center-copy">
+    <span class="vampire-landing-{{ section.id }}__tel">
+      {{ section.settings.center_text }}
+      <span class="vampire-landing-{{ section.id }}__tel-meta">22 MAY 10AM GMT+2</span>
+    </span>
+    <span class="vampire-landing-{{ section.id }}__center-main" id="vampire-countdown-{{ section.id }}">
+      {{ section.settings.phone_line }}
+    </span>
+  </p>
+
+  <p class="vampire-landing-{{ section.id }}__bottom-label vampire-landing-{{ section.id }}__bottom-label--left">
+    {{ section.settings.left_bottom_label }}
+  </p>
+  <p class="vampire-landing-{{ section.id }}__bottom-label vampire-landing-{{ section.id }}__bottom-label--right">
+    {{ section.settings.right_bottom_label }}
+  </p>
+
+  <p class="vampire-landing-{{ section.id }}__corner-copy vampire-landing-{{ section.id }}__corner-copy--left">
+    {{ section.settings.small_copy }}
+  </p>
+  <p class="vampire-landing-{{ section.id }}__corner-copy vampire-landing-{{ section.id }}__corner-copy--right">
+    {{ section.settings.small_copy }}
+  </p>
+</section>
+
+<script>
+  (function () {
+    const countdownEl = document.getElementById('vampire-countdown-{{ section.id }}');
+    if (!countdownEl) return;
+
+    // 22 May 2026, 10:00 AM Barcelona time (CEST, UTC+2)
+    const targetTime = Date.UTC(2026, 4, 22, 8, 0, 0);
+
+    const updateCountdown = () => {
+      const now = Date.now();
+      const diff = targetTime - now;
+
+      if (diff <= 0) {
+        countdownEl.textContent = 'LIVE NOW';
+        return;
+      }
+
+      const totalSeconds = Math.floor(diff / 1000);
+      const hoursRemaining = Math.floor(totalSeconds / 3600);
+      const minutesRemaining = Math.floor((totalSeconds % 3600) / 60);
+      const secondsRemaining = totalSeconds % 60;
+      countdownEl.textContent =
+        hoursRemaining +
+        'H ' +
+        String(minutesRemaining).padStart(2, '0') +
+        'M ' +
+        String(secondsRemaining).padStart(2, '0') +
+        'S';
+    };
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    var videoSection = document.getElementById('shopify-section-{{ section.id }}');
+    if (videoSection) {
+      videoSection.querySelectorAll('.vampire-landing-{{ section.id }}__video-bg video').forEach(function (v) {
+        v.setAttribute('playsinline', '');
+        v.muted = true;
+        var playTry = v.play();
+        if (playTry && playTry.catch) playTry.catch(function () {});
+      });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Landing vampire inspired",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Background video"
+    },
+    {
+      "type": "video",
+      "id": "background_video",
+      "label": "Video (recommended)",
+      "info": "Upload in Content → Files, then choose here. If empty, use “Theme asset filename” below."
+    },
+    {
+      "type": "text",
+      "id": "background_video_asset",
+      "label": "Theme asset filename (fallback)",
+      "default": "landing-background.mov",
+      "info": "Must be uploaded to Assets (e.g. landing-background.mp4). .mov works best in Safari; for Chrome desktop, export H.264 .mp4 with the same name."
+    },
+    {
+      "type": "checkbox",
+      "id": "background_video_loop",
+      "label": "Loop video",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "background_overlay_opacity",
+      "label": "Dark overlay over video",
+      "min": 0,
+      "max": 85,
+      "step": 5,
+      "unit": "%",
+      "default": 40,
+      "info": "Keeps headline text readable over bright footage."
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "aria_label",
+      "label": "Accessibility label",
+      "default": "Landing hero"
+    },
+    {
+      "type": "text",
+      "id": "brand_wordmark",
+      "label": "Top center wordmark",
+      "default": "VAMPIRE"
+    },
+    {
+      "type": "text",
+      "id": "top_right_label",
+      "label": "Top right label",
+      "default": "contact about"
+    },
+    {
+      "type": "text",
+      "id": "phone_line",
+      "label": "Phone line",
+      "default": "Tel. (+34 93 301 00 90)"
+    },
+    {
+      "type": "text",
+      "id": "center_text",
+      "label": "Center text",
+      "default": "for comissions"
+    },
+    {
+      "type": "text",
+      "id": "left_bottom_label",
+      "label": "Bottom left text",
+      "default": "studio"
+    },
+    {
+      "type": "text",
+      "id": "right_bottom_label",
+      "label": "Bottom right text",
+      "default": "films"
+    },
+    {
+      "type": "textarea",
+      "id": "small_copy",
+      "label": "Small repeated copy",
+      "default": "Everything we do aims at building bridges between youth culture and music, navigating through talent, media, and brands."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Landing vampire inspired"
+    }
+  ]
+}
+{% endschema %}

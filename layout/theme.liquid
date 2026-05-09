@@ -48,6 +48,33 @@
     %}
 
     {% style %}
+      @font-face {
+        font-family: 'Proxima Nova';
+        src: url('/ProximaNova/ProximaNova/ProximaNovaRegular/ProximaNovaRegular.woff') format('woff'),
+          url('/ProximaNova/ProximaNova/ProximaNovaRegular/ProximaNovaRegular.ttf') format('truetype');
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Proxima Nova';
+        src: url('/ProximaNova/ProximaNova/ProximaNovaBold/ProximaNovaBold.woff') format('woff'),
+          url('/ProximaNova/ProximaNova/ProximaNovaBold/ProximaNovaBold.ttf') format('truetype');
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Proxima Nova';
+        src: url('/ProximaNova/ProximaNova/ProximaNovaBlack/ProximaNovaBlack.woff') format('woff'),
+          url('/ProximaNova/ProximaNova/ProximaNovaBlack/ProximaNovaBlack.ttf') format('truetype');
+        font-style: normal;
+        font-weight: 900;
+        font-display: swap;
+      }
+
       {{ settings.type_body_font | font_face: font_display: 'swap' }}
       {{ body_font_bold | font_face: font_display: 'swap' }}
       {{ body_font_italic | font_face: font_display: 'swap' }}
@@ -222,6 +249,17 @@
         --variant-pills-shadow-blur-radius: {{ settings.variant_pills_shadow_blur }}px;
       }
 
+      :root {
+        --font-body-family: 'Proxima Nova', 'Helvetica Neue', Arial, sans-serif;
+        --font-body-style: normal;
+        --font-body-weight: 700;
+        --font-body-weight-bold: 900;
+
+        --font-heading-family: 'Proxima Nova', 'Helvetica Neue', Arial, sans-serif;
+        --font-heading-style: normal;
+        --font-heading-weight: 900;
+      }
+
       *,
       *::before,
       *::after {
@@ -307,13 +345,17 @@
       {%- render 'cart-drawer' -%}
     {%- endif -%}
 
-    {% sections 'header-group' %}
+    {%- unless template.name == 'index' -%}
+      {% sections 'header-group' %}
+    {%- endunless -%}
 
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
       {{ content_for_layout }}
     </main>
 
-    {% sections 'footer-group' %}
+    {%- unless template.name == 'index' -%}
+      {% sections 'footer-group' %}
+    {%- endunless -%}
 
     <ul hidden>
       <li id="a11y-refresh-page-message">{{ 'accessibility.refresh_page' | t }}</li>
