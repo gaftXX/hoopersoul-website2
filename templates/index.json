@@ -4,7 +4,6 @@
       "type": "landing-vampire-inspired",
       "settings": {
         "background_video_asset": "landing-background.mov",
-        "background_video_loop": true,
         "background_overlay_opacity": 45,
         "aria_label": "Vampire inspired landing",
         "brand_wordmark": "VAMPIRE",

@@ -276,8 +276,7 @@
   }
 
   .vampire-landing-{{ section.id }}__bottom-label-link:hover {
-    text-decoration: underline;
-    text-underline-offset: 0.12em;
+    text-decoration: none;
   }
 
   .vampire-landing-{{ section.id }}__bottom-label-link:focus-visible {
@@ -430,7 +429,7 @@
   .vampire-landing-{{ section.id }}__contact-panel {
     grid-column: 1;
     grid-row: 1;
-    background: #fccb00;
+    background: #b400ff;
     color: #000;
     overflow: auto;
     padding: clamp(10px, 1.2vw, 18px) clamp(10px, 1.4vw, 22px) clamp(20px, 2.5vw, 36px);
@@ -453,6 +452,12 @@
     cursor: pointer;
     text-transform: uppercase;
     text-decoration: none;
+    position: relative;
+    z-index: 2;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
 
   .vampire-landing-{{ section.id }}__contact-close:hover {
@@ -475,6 +480,10 @@
     letter-spacing: -0.02em;
     text-transform: lowercase;
     color: #000;
+    position: relative;
+    z-index: 0;
+    user-select: none;
+    -webkit-user-select: none;
   }
 
   .vampire-landing-{{ section.id }}__contact-form-inner {
@@ -487,7 +496,7 @@
     position: relative;
     margin-bottom: clamp(14px, 2vw, 22px);
     border: 1px solid #000;
-    background: #fccb00;
+    background: #b400ff;
     box-sizing: border-box;
   }
 
@@ -614,7 +623,7 @@
     appearance: none;
     border: 1px solid #000;
     border-radius: 50%;
-    background: #fccb00;
+    background: #b400ff;
     box-sizing: border-box;
   }
 
@@ -912,12 +921,17 @@
               | video_tag:
                 image_size: '3840x',
                 autoplay: true,
-                loop: section.settings.background_video_loop,
+                loop: true,
                 muted: true,
                 controls: false
             }}
           {%- endcapture -%}
-          {{ bg_video_markup | replace_first: '<video', '<video playsinline=""' }}
+          {{
+            bg_video_markup
+            | replace_first:
+              '<video',
+              '<video playsinline="" data-pause-all-media-exempt=""'
+          }}
         {%- elsif bg_asset != blank -%}
           {%- assign bg_ext = bg_asset | split: '.' | last | downcase -%}
           {%- liquid
@@ -933,8 +947,9 @@
             autoplay
             muted
             playsinline
+            loop
+            data-pause-all-media-exempt
             preload="metadata"
-            {% if section.settings.background_video_loop %}loop{% endif %}
           >
             <source src="{{ bg_asset | asset_url }}" type="{{ bg_mime }}">
           </video>
@@ -1344,7 +1359,14 @@
     if (sectionEl) {
       sectionEl.querySelectorAll('.vampire-landing-' + sectionId + '__video-bg video').forEach(function (v) {
         v.setAttribute('playsinline', '');
+        v.setAttribute('data-pause-all-media-exempt', '');
         v.muted = true;
+        v.loop = true;
+        v.addEventListener('ended', function () {
+          v.currentTime = 0;
+          var again = v.play();
+          if (again && again.catch) again.catch(function () {});
+        });
         var playTry = v.play();
         if (playTry && playTry.catch) playTry.catch(function () {});
       });
@@ -1501,12 +1523,6 @@
       "info": "Must be uploaded to Assets (e.g. landing-background.mp4). .mov works best in Safari; for Chrome desktop, export H.264 .mp4 with the same name."
     },
     {
-      "type": "checkbox",
-      "id": "background_video_loop",
-      "label": "Loop video",
-      "default": true
-    },
-    {
       "type": "range",
       "id": "background_overlay_opacity",
       "label": "Dark overlay over video",
@@ -1580,7 +1596,7 @@
       "type": "url",
       "id": "shop_page_url",
       "label": "Shop page URL (optional)",
-      "info": "Overrides automatic shop link. If empty, uses the page with handle shop when it exists, otherwise /pages/shop."
+      "info": "Overrides automatic shop link. If empty, uses the Page with handle shop when it exists, otherwise /pages/shop. Create a Page titled Shop (handle shop); the theme shows the custom shop layout even if that Page still uses the default Page template."
     }
   ],
   "presets": [

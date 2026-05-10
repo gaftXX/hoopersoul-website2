@@ -18,8 +18,8 @@
     flex-direction: column;
     min-height: 100vh;
     min-height: 100dvh;
-    background: #fff;
-    color: #000;
+    background: #000;
+    color: #fff;
     font-family: var(--font-heading-family);
     isolation: isolate;
   }
@@ -32,7 +32,7 @@
     gap: clamp(10px, 2vw, 20px);
     padding: clamp(8px, 1.4vw, 14px) clamp(10px, 1.6vw, 22px);
     background: #fff;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     z-index: 5;
     box-sizing: border-box;
   }
@@ -66,37 +66,111 @@
   .vsp-{{ section.id }}__nav-wordmark {
     margin: 0;
     justify-self: center;
+    position: relative;
     display: inline-flex;
     align-items: flex-end;
-    gap: clamp(3px, 0.55vw, 6px);
-    font-size: clamp(12px, 2.2vw, 18px);
-    line-height: 1;
+    width: max-content;
     color: #000;
   }
 
-  .vsp-{{ section.id }}__nav-logos {
+  .vsp-{{ section.id }}__nav-wordmark-logos {
     display: flex;
     align-items: center;
-    gap: clamp(8px, 1.8vw, 18px);
+    gap: clamp(6px, 1vw, 15px);
   }
 
-  .vsp-{{ section.id }}__nav-logo-wrap {
-    width: clamp(22px, 3.8vw, 38px);
+  .vsp-{{ section.id }}__nav-wordmark-logo-wrap {
+    position: relative;
+    width: clamp(24px, 2.27vw, 44px);
   }
 
-  .vsp-{{ section.id }}__nav-logo {
+  .vsp-{{ section.id }}__nav-wordmark-logo {
     display: block;
     width: 100%;
     height: auto;
+    filter: blur(5.5px);
+    transition: filter 220ms ease;
+    transition-delay: 140ms;
+    backface-visibility: hidden;
+    transform: translateZ(0);
   }
 
-  .vsp-{{ section.id }}__nav-mark {
-    display: inline-block;
-    margin-left: 3px;
-    font-size: 0.55em;
+  .vsp-{{ section.id }}__nav-wordmark-logo--base {
+    opacity: 1;
+    transition: opacity 140ms ease, filter 220ms ease;
+    transition-delay: 0ms, 140ms;
+  }
+
+  .vsp-{{ section.id }}__nav-wordmark-logo--color {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 260ms ease;
+    transition-delay: 0ms;
+    pointer-events: none;
+  }
+
+  .vsp-{{ section.id }}__nav-wordmark:hover .vsp-{{ section.id }}__nav-wordmark-logo,
+  .vsp-{{ section.id }}__nav-wordmark:focus-within .vsp-{{ section.id }}__nav-wordmark-logo {
+    filter: none;
+    transition-delay: 0ms;
+  }
+
+  .vsp-{{ section.id }}__nav-wordmark:hover .vsp-{{ section.id }}__nav-wordmark-logo--base,
+  .vsp-{{ section.id }}__nav-wordmark:focus-within .vsp-{{ section.id }}__nav-wordmark-logo--base {
+    opacity: 0;
+  }
+
+  .vsp-{{ section.id }}__nav-wordmark:hover .vsp-{{ section.id }}__nav-wordmark-logo-wrap--1 .vsp-{{ section.id }}__nav-wordmark-logo--base,
+  .vsp-{{ section.id }}__nav-wordmark:focus-within .vsp-{{ section.id }}__nav-wordmark-logo-wrap--1 .vsp-{{ section.id }}__nav-wordmark-logo--base {
+    transition-delay: 160ms, 0ms;
+  }
+
+  .vsp-{{ section.id }}__nav-wordmark:hover .vsp-{{ section.id }}__nav-wordmark-logo-wrap--1 .vsp-{{ section.id }}__nav-wordmark-logo--color,
+  .vsp-{{ section.id }}__nav-wordmark:focus-within .vsp-{{ section.id }}__nav-wordmark-logo-wrap--1 .vsp-{{ section.id }}__nav-wordmark-logo--color {
+    transition-delay: 160ms;
+  }
+
+  .vsp-{{ section.id }}__nav-wordmark:hover .vsp-{{ section.id }}__nav-wordmark-logo-wrap--2 .vsp-{{ section.id }}__nav-wordmark-logo--color,
+  .vsp-{{ section.id }}__nav-wordmark:focus-within .vsp-{{ section.id }}__nav-wordmark-logo-wrap--2 .vsp-{{ section.id }}__nav-wordmark-logo--color {
+    transition-delay: 230ms;
+  }
+
+  .vsp-{{ section.id }}__nav-wordmark:hover .vsp-{{ section.id }}__nav-wordmark-logo-wrap--2 .vsp-{{ section.id }}__nav-wordmark-logo--base,
+  .vsp-{{ section.id }}__nav-wordmark:focus-within .vsp-{{ section.id }}__nav-wordmark-logo-wrap--2 .vsp-{{ section.id }}__nav-wordmark-logo--base {
+    transition-delay: 230ms, 0ms;
+  }
+
+  .vsp-{{ section.id }}__nav-wordmark:hover .vsp-{{ section.id }}__nav-wordmark-logo-wrap--3 .vsp-{{ section.id }}__nav-wordmark-logo--color,
+  .vsp-{{ section.id }}__nav-wordmark:focus-within .vsp-{{ section.id }}__nav-wordmark-logo-wrap--3 .vsp-{{ section.id }}__nav-wordmark-logo--color {
+    transition-delay: 300ms;
+  }
+
+  .vsp-{{ section.id }}__nav-wordmark:hover .vsp-{{ section.id }}__nav-wordmark-logo-wrap--3 .vsp-{{ section.id }}__nav-wordmark-logo--base,
+  .vsp-{{ section.id }}__nav-wordmark:focus-within .vsp-{{ section.id }}__nav-wordmark-logo-wrap--3 .vsp-{{ section.id }}__nav-wordmark-logo--base {
+    transition-delay: 300ms, 0ms;
+  }
+
+  .vsp-{{ section.id }}__nav-wordmark:hover .vsp-{{ section.id }}__nav-wordmark-logo--color,
+  .vsp-{{ section.id }}__nav-wordmark:focus-within .vsp-{{ section.id }}__nav-wordmark-logo--color {
+    opacity: 1;
+  }
+
+  .vsp-{{ section.id }}__nav-wordmark-mark {
+    position: absolute;
+    left: 100%;
+    top: 1px;
+    margin-left: 2px;
+    font-size: clamp(8px, 0.45vw, 11px);
     font-weight: 300;
-    vertical-align: super;
     line-height: 1;
+    color: #000;
+    filter: none;
+    user-select: none;
+  }
+
+  .vsp-{{ section.id }}__nav-wordmark:focus-within .vsp-{{ section.id }}__nav-wordmark-mark {
+    filter: none;
   }
 
   .vsp-{{ section.id }}__nav-right {
@@ -113,6 +187,7 @@
     text-transform: lowercase;
     font-weight: 900;
     font-family: 'Proxima Nova', var(--font-heading-family), Impact, sans-serif;
+    color: #000;
   }
 
   .vsp-{{ section.id }}__cta-contact {
@@ -146,60 +221,11 @@
     margin-inline-start: 0.35em;
   }
 
-  .vsp-{{ section.id }}__main {
+  .vsp-{{ section.id }}__body {
     flex: 1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
     min-height: 0;
     min-width: 0;
-  }
-
-  .vsp-{{ section.id }}__col {
-    min-height: 0;
-    min-width: 0;
-    overflow-y: auto;
-    overflow-x: hidden;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior: contain;
-  }
-
-  .vsp-{{ section.id }}__col--left {
-    border-right: 1px solid #000;
-  }
-
-  .vsp-{{ section.id }}__tile {
-    display: block;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    box-sizing: border-box;
-    flex-shrink: 0;
-  }
-
-  .vsp-{{ section.id }}__tile--white {
-    background: #fff;
-  }
-
-  .vsp-{{ section.id }}__tile--black {
     background: #000;
-  }
-
-  .vsp-{{ section.id }}__tile--red {
-    background: #e60012;
-  }
-
-  .vsp-{{ section.id }}__tile--blue {
-    background: #0500ff;
-  }
-
-  @media screen and (max-width: 749px) {
-    .vsp-{{ section.id }}__main {
-      grid-template-columns: 1fr;
-    }
-
-    .vsp-{{ section.id }}__col--left {
-      border-right: none;
-      border-bottom: 1px solid #000;
-    }
   }
 
   .vsp-{{ section.id }}__contact-root {
@@ -228,7 +254,7 @@
   .vsp-{{ section.id }}__contact-panel {
     grid-column: 1;
     grid-row: 1;
-    background: #fccb00;
+    background: #b400ff;
     color: #000;
     overflow: auto;
     padding: clamp(10px, 1.2vw, 18px) clamp(10px, 1.4vw, 22px) clamp(20px, 2.5vw, 36px);
@@ -280,7 +306,7 @@
     position: relative;
     margin-bottom: clamp(14px, 2vw, 22px);
     border: 1px solid #000;
-    background: #fccb00;
+    background: #b400ff;
     box-sizing: border-box;
   }
 
@@ -385,7 +411,7 @@
     appearance: none;
     border: 1px solid #000;
     border-radius: 50%;
-    background: #fccb00;
+    background: #b400ff;
     box-sizing: border-box;
   }
 
@@ -672,29 +698,80 @@
 <section class="vsp-{{ section.id }}" aria-label="{{ section.settings.aria_label | escape }}">
   <header class="vsp-{{ section.id }}__nav" role="banner">
     <div class="vsp-{{ section.id }}__nav-back">
-      <a class="vsp-{{ section.id }}__back-link" href="{{ back_href }}">{{ section.settings.back_label | escape }}</a>
+      <a
+        class="vsp-{{ section.id }}__back-link"
+        href="{{ back_href }}"
+        aria-label="{{ 'accessibility.close' | t }} — {{ section.settings.aria_label | escape }}"
+      >
+        {{- section.settings.back_label | escape -}}
+      </a>
     </div>
 
-    <div class="vsp-{{ section.id }}__nav-wordmark">
-      <span class="vsp-{{ section.id }}__nav-logos">
-        <span class="vsp-{{ section.id }}__nav-logo-wrap">
+    <div
+      class="vsp-{{ section.id }}__nav-wordmark"
+      role="group"
+      aria-label="{{ section.settings.brand_wordmark | escape }}"
+    >
+      <span class="vsp-{{ section.id }}__nav-wordmark-logos">
+        <span class="vsp-{{ section.id }}__nav-wordmark-logo-wrap vsp-{{ section.id }}__nav-wordmark-logo-wrap--1">
           <img
             src="{{ 'logo_HS.svg' | asset_url }}"
             alt="{{ section.settings.brand_wordmark | escape }}"
-            class="vsp-{{ section.id }}__nav-logo"
+            class="vsp-{{ section.id }}__nav-wordmark-logo vsp-{{ section.id }}__nav-wordmark-logo--base"
+            width="590"
+            height="706"
+            loading="lazy"
+          >
+          <img
+            src="{{ 'logo_HS_b400ff.svg' | asset_url }}"
+            alt=""
+            aria-hidden="true"
+            class="vsp-{{ section.id }}__nav-wordmark-logo vsp-{{ section.id }}__nav-wordmark-logo--color"
             width="590"
             height="706"
             loading="lazy"
           >
         </span>
-        <span class="vsp-{{ section.id }}__nav-logo-wrap" aria-hidden="true">
-          <img src="{{ 'logo_HS.svg' | asset_url }}" alt="" class="vsp-{{ section.id }}__nav-logo" width="590" height="706" loading="lazy">
+        <span class="vsp-{{ section.id }}__nav-wordmark-logo-wrap vsp-{{ section.id }}__nav-wordmark-logo-wrap--2" aria-hidden="true">
+          <img
+            src="{{ 'logo_HS.svg' | asset_url }}"
+            alt=""
+            class="vsp-{{ section.id }}__nav-wordmark-logo vsp-{{ section.id }}__nav-wordmark-logo--base"
+            width="590"
+            height="706"
+            loading="lazy"
+          >
+          <img
+            src="{{ 'logo_HS_0500ff.svg' | asset_url }}"
+            alt=""
+            aria-hidden="true"
+            class="vsp-{{ section.id }}__nav-wordmark-logo vsp-{{ section.id }}__nav-wordmark-logo--color"
+            width="590"
+            height="706"
+            loading="lazy"
+          >
         </span>
-        <span class="vsp-{{ section.id }}__nav-logo-wrap" aria-hidden="true">
-          <img src="{{ 'logo_HS.svg' | asset_url }}" alt="" class="vsp-{{ section.id }}__nav-logo" width="590" height="706" loading="lazy">
+        <span class="vsp-{{ section.id }}__nav-wordmark-logo-wrap vsp-{{ section.id }}__nav-wordmark-logo-wrap--3" aria-hidden="true">
+          <img
+            src="{{ 'logo_HS.svg' | asset_url }}"
+            alt=""
+            class="vsp-{{ section.id }}__nav-wordmark-logo vsp-{{ section.id }}__nav-wordmark-logo--base"
+            width="590"
+            height="706"
+            loading="lazy"
+          >
+          <img
+            src="{{ 'logo_HS_05ff00.svg' | asset_url }}"
+            alt=""
+            aria-hidden="true"
+            class="vsp-{{ section.id }}__nav-wordmark-logo vsp-{{ section.id }}__nav-wordmark-logo--color"
+            width="590"
+            height="706"
+            loading="lazy"
+          >
         </span>
       </span>
-      <span class="vsp-{{ section.id }}__nav-mark" aria-hidden="true">&reg;</span>
+      <span class="vsp-{{ section.id }}__nav-wordmark-mark" aria-hidden="true">&reg;</span>
     </div>
 
     <div class="vsp-{{ section.id }}__nav-right">
@@ -726,20 +803,7 @@
     </div>
   </header>
 
-  <div class="vsp-{{ section.id }}__main">
-    <div class="vsp-{{ section.id }}__col vsp-{{ section.id }}__col--left">
-      <div class="vsp-{{ section.id }}__tile vsp-{{ section.id }}__tile--white"></div>
-      <div class="vsp-{{ section.id }}__tile vsp-{{ section.id }}__tile--black"></div>
-      <div class="vsp-{{ section.id }}__tile vsp-{{ section.id }}__tile--red"></div>
-      <div class="vsp-{{ section.id }}__tile vsp-{{ section.id }}__tile--blue"></div>
-    </div>
-    <div class="vsp-{{ section.id }}__col">
-      <div class="vsp-{{ section.id }}__tile vsp-{{ section.id }}__tile--white"></div>
-      <div class="vsp-{{ section.id }}__tile vsp-{{ section.id }}__tile--black"></div>
-      <div class="vsp-{{ section.id }}__tile vsp-{{ section.id }}__tile--red"></div>
-      <div class="vsp-{{ section.id }}__tile vsp-{{ section.id }}__tile--blue"></div>
-    </div>
-  </div>
+  <div class="vsp-{{ section.id }}__body" aria-hidden="true"></div>
 
   <div
     id="vsp-contact-dialog-{{ section.id }}"
@@ -1040,8 +1104,8 @@
     {
       "type": "text",
       "id": "back_label",
-      "label": "Back link text",
-      "default": ">back"
+      "label": "Close link text",
+      "default": ">close"
     },
     {
       "type": "url",
