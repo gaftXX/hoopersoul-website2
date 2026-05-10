@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "shop-vampire-inspired",
+      "settings": {
+        "aria_label": "Shop",
+        "back_label": ">back",
+        "brand_wordmark": "Hoopers Soul",
+        "nav_cta_words": "contact about"
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

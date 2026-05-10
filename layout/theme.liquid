@@ -345,7 +345,14 @@
       {%- render 'cart-drawer' -%}
     {%- endif -%}
 
-    {%- unless template.name == 'index' -%}
+    {%- liquid
+      assign vampire_hide_header_footer = false
+      if template.name == 'page' and template.suffix == 'shop'
+        assign vampire_hide_header_footer = true
+      endif
+    -%}
+
+    {%- unless template.name == 'index' or vampire_hide_header_footer -%}
       {% sections 'header-group' %}
     {%- endunless -%}
 
@@ -353,7 +360,7 @@
       {{ content_for_layout }}
     </main>
 
-    {%- unless template.name == 'index' -%}
+    {%- unless template.name == 'index' or vampire_hide_header_footer -%}
       {% sections 'footer-group' %}
     {%- endunless -%}
 

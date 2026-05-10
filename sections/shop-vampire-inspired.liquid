@@ -1,0 +1,1093 @@
+{%- style -%}
+  #shopify-section-{{ section.id }} {
+    margin: 0;
+    max-width: none;
+    padding: 0;
+    width: 100%;
+  }
+
+  #shopify-section-{{ section.id }}.vsp-about-open .vsp-{{ section.id }}__nav-right .vsp-{{ section.id }}__cta {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .vsp-{{ section.id }} {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background: #fff;
+    color: #000;
+    font-family: var(--font-heading-family);
+    isolation: isolate;
+  }
+
+  .vsp-{{ section.id }}__nav {
+    flex-shrink: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(10px, 2vw, 20px);
+    padding: clamp(8px, 1.4vw, 14px) clamp(10px, 1.6vw, 22px);
+    background: #fff;
+    border-bottom: 1px solid #000;
+    z-index: 5;
+    box-sizing: border-box;
+  }
+
+  .vsp-{{ section.id }}__nav-back {
+    justify-self: start;
+    min-width: 0;
+  }
+
+  .vsp-{{ section.id }}__back-link {
+    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+    font-size: clamp(0.8rem, 1.85vw, 0.98rem);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: #000;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: inline-block;
+  }
+
+  .vsp-{{ section.id }}__back-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.14em;
+  }
+
+  .vsp-{{ section.id }}__back-link:focus-visible {
+    outline: 2px solid #000;
+    outline-offset: 3px;
+  }
+
+  .vsp-{{ section.id }}__nav-wordmark {
+    margin: 0;
+    justify-self: center;
+    display: inline-flex;
+    align-items: flex-end;
+    gap: clamp(3px, 0.55vw, 6px);
+    font-size: clamp(12px, 2.2vw, 18px);
+    line-height: 1;
+    color: #000;
+  }
+
+  .vsp-{{ section.id }}__nav-logos {
+    display: flex;
+    align-items: center;
+    gap: clamp(8px, 1.8vw, 18px);
+  }
+
+  .vsp-{{ section.id }}__nav-logo-wrap {
+    width: clamp(22px, 3.8vw, 38px);
+  }
+
+  .vsp-{{ section.id }}__nav-logo {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .vsp-{{ section.id }}__nav-mark {
+    display: inline-block;
+    margin-left: 3px;
+    font-size: 0.55em;
+    font-weight: 300;
+    vertical-align: super;
+    line-height: 1;
+  }
+
+  .vsp-{{ section.id }}__nav-right {
+    justify-self: end;
+    min-width: 0;
+    text-align: right;
+  }
+
+  .vsp-{{ section.id }}__cta {
+    margin: 0;
+    padding: 0;
+    font-size: clamp(0.88rem, 2.1vw, 1.1rem);
+    line-height: 1.1;
+    text-transform: lowercase;
+    font-weight: 900;
+    font-family: 'Proxima Nova', var(--font-heading-family), Impact, sans-serif;
+  }
+
+  .vsp-{{ section.id }}__cta-contact {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    font: inherit;
+    color: inherit;
+    text-transform: inherit;
+    line-height: inherit;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .vsp-{{ section.id }}__cta-contact:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.12em;
+  }
+
+  .vsp-{{ section.id }}__cta-contact:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  .vsp-{{ section.id }}__cta-about {
+    margin-inline-start: 0.45em;
+  }
+
+  .vsp-{{ section.id }}__cta-rest {
+    margin-inline-start: 0.35em;
+  }
+
+  .vsp-{{ section.id }}__main {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 0;
+    min-width: 0;
+  }
+
+  .vsp-{{ section.id }}__col {
+    min-height: 0;
+    min-width: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  .vsp-{{ section.id }}__col--left {
+    border-right: 1px solid #000;
+  }
+
+  .vsp-{{ section.id }}__tile {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    box-sizing: border-box;
+    flex-shrink: 0;
+  }
+
+  .vsp-{{ section.id }}__tile--white {
+    background: #fff;
+  }
+
+  .vsp-{{ section.id }}__tile--black {
+    background: #000;
+  }
+
+  .vsp-{{ section.id }}__tile--red {
+    background: #e60012;
+  }
+
+  .vsp-{{ section.id }}__tile--blue {
+    background: #0500ff;
+  }
+
+  @media screen and (max-width: 749px) {
+    .vsp-{{ section.id }}__main {
+      grid-template-columns: 1fr;
+    }
+
+    .vsp-{{ section.id }}__col--left {
+      border-right: none;
+      border-bottom: 1px solid #000;
+    }
+  }
+
+  .vsp-{{ section.id }}__contact-root {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 0;
+    height: 100vh;
+    height: 100dvh;
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  .vsp-{{ section.id }}__contact-root.is-open {
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  .vsp-{{ section.id }}__contact-root:not(.is-open) .vsp-{{ section.id }}__contact-panel,
+  .vsp-{{ section.id }}__contact-root:not(.is-open) .vsp-{{ section.id }}__contact-scrim {
+    pointer-events: none;
+  }
+
+  .vsp-{{ section.id }}__contact-panel {
+    grid-column: 1;
+    grid-row: 1;
+    background: #fccb00;
+    color: #000;
+    overflow: auto;
+    padding: clamp(10px, 1.2vw, 18px) clamp(10px, 1.4vw, 22px) clamp(20px, 2.5vw, 36px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-sizing: border-box;
+  }
+
+  .vsp-{{ section.id }}__contact-close {
+    margin: 0 0 clamp(4px, 0.55vw, 9px);
+    padding: 0;
+    border: none;
+    background: none;
+    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+    font-size: clamp(1.35rem, 3.6vw, 2rem);
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    color: #000;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .vsp-{{ section.id }}__contact-close:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  .vsp-{{ section.id }}__contact-title {
+    margin: -0.08em 0 clamp(14px, 2.2vw, 28px);
+    padding: 0;
+    font-family: 'Proxima Nova', var(--font-heading-family), Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 900;
+    font-size: calc(1.16 * clamp(3.2rem, 8.4vw, 8.8rem));
+    line-height: 0.88;
+    letter-spacing: -0.02em;
+    text-transform: lowercase;
+    color: #000;
+  }
+
+  .vsp-{{ section.id }}__contact-form-inner {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .vsp-{{ section.id }}__contact-field {
+    --vsp-contact-field-inset: clamp(5px, 0.85vw, 8px);
+    position: relative;
+    margin-bottom: clamp(14px, 2vw, 22px);
+    border: 1px solid #000;
+    background: #fccb00;
+    box-sizing: border-box;
+  }
+
+  .vsp-{{ section.id }}__contact-input,
+  .vsp-{{ section.id }}__contact-textarea {
+    display: block;
+    width: 100%;
+    margin: 0;
+    border: none;
+    background: transparent;
+    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+    font-size: clamp(1.35rem, 3.6vw, 2rem);
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    color: #000;
+    box-sizing: border-box;
+  }
+
+  .vsp-{{ section.id }}__contact-input {
+    padding: var(--vsp-contact-field-inset);
+    height: calc(var(--vsp-contact-field-inset) * 2 + 1.2em);
+    overflow: hidden;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 0;
+    caret-color: #000;
+  }
+
+  .vsp-{{ section.id }}__contact-textarea {
+    padding: var(--vsp-contact-field-inset);
+    height: calc(var(--vsp-contact-field-inset) * 2 + 6em);
+    min-height: calc(var(--vsp-contact-field-inset) * 2 + 6em);
+    resize: vertical;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 0;
+    caret-color: #000;
+    vertical-align: top;
+  }
+
+  .vsp-{{ section.id }}__contact-input::placeholder,
+  .vsp-{{ section.id }}__contact-textarea::placeholder {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 300;
+    line-height: 1.2;
+    color: #000;
+    opacity: 1;
+  }
+
+  .vsp-{{ section.id }}__contact-input:focus,
+  .vsp-{{ section.id }}__contact-input:focus-visible,
+  .vsp-{{ section.id }}__contact-textarea:focus,
+  .vsp-{{ section.id }}__contact-textarea:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+
+  .vsp-{{ section.id }}__contact-legal {
+    margin: clamp(4px, 0.8vw, 10px) 0 clamp(14px, 1.85vw, 22px);
+    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+    font-size: clamp(1.35rem, 3.6vw, 2rem);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    line-height: 1.35;
+  }
+
+  .vsp-{{ section.id }}__contact-legal-label {
+    display: flex;
+    align-items: center;
+    gap: 0.55em;
+    cursor: pointer;
+    color: #000;
+  }
+
+  .vsp-{{ section.id }}__contact-legal-copy {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 0.45em;
+    row-gap: 0.2em;
+    line-height: 1.35;
+  }
+
+  .vsp-{{ section.id }}__contact-legal-preface {
+    white-space: nowrap;
+  }
+
+  .vsp-{{ section.id }}__contact-checkbox {
+    flex-shrink: 0;
+    width: 1.45em;
+    height: 1.45em;
+    min-width: 1.45em;
+    min-height: 1.45em;
+    aspect-ratio: 1;
+    margin: 0;
+    cursor: pointer;
+    align-self: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid #000;
+    border-radius: 50%;
+    background: #fccb00;
+    box-sizing: border-box;
+  }
+
+  .vsp-{{ section.id }}__contact-checkbox:checked {
+    background: #000;
+    border-color: #000;
+  }
+
+  .vsp-{{ section.id }}__contact-checkbox:focus-visible {
+    outline: 1px solid #000;
+    outline-offset: 3px;
+  }
+
+  .vsp-{{ section.id }}__contact-legal-link {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.12em;
+  }
+
+  button.vsp-{{ section.id }}__contact-legal-link {
+    font: inherit;
+    font-size: inherit;
+    letter-spacing: inherit;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: inline;
+    text-align: inherit;
+    color: inherit;
+  }
+
+  .vsp-{{ section.id }}__contact-send {
+    margin: clamp(-7px, -0.65vw, -2px) 0 0;
+    padding: 0;
+    border: none;
+    background: none;
+    font-family: 'Proxima Nova', var(--font-heading-family), Impact, Haettenschweiler, sans-serif;
+    font-weight: 900;
+    font-size: clamp(2.85rem, 7vw, 5rem);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #000;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  .vsp-{{ section.id }}__contact-scrim {
+    grid-column: 2;
+    grid-row: 1;
+    min-height: 0;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    background: transparent;
+  }
+
+  .vsp-{{ section.id }}__about-root {
+    position: fixed;
+    inset: 0;
+    z-index: 9010;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 0;
+    height: 100vh;
+    height: 100dvh;
+    pointer-events: none;
+    visibility: hidden;
+    overflow: hidden;
+  }
+
+  .vsp-{{ section.id }}__about-root.is-open {
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  .vsp-{{ section.id }}__about-root:not(.is-open) .vsp-{{ section.id }}__about-panel,
+  .vsp-{{ section.id }}__about-root:not(.is-open) .vsp-{{ section.id }}__about-scrim {
+    pointer-events: none;
+  }
+
+  .vsp-{{ section.id }}__about-scrim {
+    grid-column: 1;
+    grid-row: 1;
+    min-height: 0;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    background: transparent;
+  }
+
+  .vsp-{{ section.id }}__about-panel {
+    position: relative;
+    grid-column: 2;
+    grid-row: 1;
+    height: 100%;
+    min-height: 0;
+    background: #0500ff;
+    color: #fff;
+    overflow: hidden;
+    padding: clamp(10px, 1.2vw, 18px) clamp(10px, 1.4vw, 22px) clamp(20px, 2.5vw, 36px);
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    align-content: start;
+    box-sizing: border-box;
+    isolation: isolate;
+  }
+
+  .vsp-{{ section.id }}__about-header {
+    grid-row: 1;
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: clamp(2px, 0.45vw, 8px);
+    width: 100%;
+    box-sizing: border-box;
+    background: #0500ff;
+    pointer-events: auto;
+  }
+
+  .vsp-{{ section.id }}__about-mid {
+    grid-row: 2;
+    position: relative;
+    z-index: 0;
+    min-height: 0;
+    min-width: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    align-self: stretch;
+    box-sizing: border-box;
+    padding-left: clamp(16px, 3.8vw, 56px);
+    padding-top: clamp(10px, 2vw, 22px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  .vsp-{{ section.id }}__about-copy {
+    margin: 0;
+    padding: 0;
+    width: min(56rem, 100%);
+    max-width: 100%;
+    align-self: flex-end;
+    border: none;
+    background: none;
+    box-shadow: none;
+    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+    font-size: clamp(1.35rem, 3.6vw, 2rem);
+    font-weight: 300;
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+    color: #fff;
+    text-align: justify;
+    text-align-last: left;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    overflow-wrap: break-word;
+    outline: none;
+  }
+
+  .vsp-{{ section.id }}__about-copy p {
+    margin: 0;
+    text-align: justify;
+    text-align-last: left;
+  }
+
+  .vsp-{{ section.id }}__about-close {
+    margin: 0;
+    flex-shrink: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+    font-size: clamp(1.35rem, 3.6vw, 2rem);
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    color: #fff;
+    cursor: pointer !important;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 4;
+    user-select: none;
+    touch-action: manipulation;
+  }
+
+  .vsp-{{ section.id }}__about-close:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  .vsp-{{ section.id }}__about-title,
+  .vsp-{{ section.id }}__about-legal-title {
+    padding: 0;
+    font-family: 'Proxima Nova', var(--font-heading-family), Impact, sans-serif;
+    font-weight: 900;
+    font-size: calc(1.16 * clamp(3.2rem, 8.4vw, 8.8rem));
+    line-height: 0.88;
+    letter-spacing: -0.02em;
+    text-transform: lowercase;
+    color: #fff;
+  }
+
+  .vsp-{{ section.id }}__about-title {
+    margin: -0.08em 0 0;
+  }
+
+  .vsp-{{ section.id }}__about-footer {
+    grid-row: 3;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: clamp(14px, 2.5vw, 28px);
+    background: #0500ff;
+    pointer-events: auto;
+  }
+
+  .vsp-{{ section.id }}__about-legal-title {
+    margin: 0;
+    user-select: none;
+  }
+
+  .vsp-{{ section.id }}__contact-status {
+    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+    font-size: clamp(0.75rem, 1.05vw, 0.9rem);
+    line-height: 1.45;
+    margin: 0 0 1rem;
+  }
+
+  @media screen and (max-width: 749px) {
+    .vsp-{{ section.id }}__contact-title,
+    .vsp-{{ section.id }}__about-title,
+    .vsp-{{ section.id }}__about-legal-title {
+      font-size: calc(1.16 * clamp(2.3rem, 10.2vw, 4.4rem));
+    }
+
+    .vsp-{{ section.id }}__contact-send {
+      font-size: clamp(2.35rem, 11vw, 3.75rem);
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign cta_words = section.settings.nav_cta_words | split: ' '
+  assign cta_first = cta_words | first
+  assign cta_second = ''
+  assign cta_tail_joined = ''
+  if cta_words.size > 1
+    for w in cta_words offset: 1
+      if forloop.first
+        assign cta_second = w
+      else
+        if cta_tail_joined == ''
+          assign cta_tail_joined = w
+        else
+          assign cta_tail_joined = cta_tail_joined | append: ' ' | append: w
+        endif
+      endif
+    endfor
+  endif
+  assign vampire_form_id = 'ContactForm-vampire-shop-' | append: section.id
+  assign vampire_form_class = 'vsp-' | append: section.id | append: '__contact-form-inner'
+  assign vampire_terms_url = shop.terms_of_service.url
+  if vampire_terms_url == blank and section.settings.legal_terms_url != blank
+    assign vampire_terms_url = section.settings.legal_terms_url
+  endif
+  if section.settings.home_url != blank
+    assign back_href = section.settings.home_url
+  else
+    assign back_href = routes.root_url
+  endif
+-%}
+
+<section class="vsp-{{ section.id }}" aria-label="{{ section.settings.aria_label | escape }}">
+  <header class="vsp-{{ section.id }}__nav" role="banner">
+    <div class="vsp-{{ section.id }}__nav-back">
+      <a class="vsp-{{ section.id }}__back-link" href="{{ back_href }}">{{ section.settings.back_label | escape }}</a>
+    </div>
+
+    <div class="vsp-{{ section.id }}__nav-wordmark">
+      <span class="vsp-{{ section.id }}__nav-logos">
+        <span class="vsp-{{ section.id }}__nav-logo-wrap">
+          <img
+            src="{{ 'logo_HS.svg' | asset_url }}"
+            alt="{{ section.settings.brand_wordmark | escape }}"
+            class="vsp-{{ section.id }}__nav-logo"
+            width="590"
+            height="706"
+            loading="lazy"
+          >
+        </span>
+        <span class="vsp-{{ section.id }}__nav-logo-wrap" aria-hidden="true">
+          <img src="{{ 'logo_HS.svg' | asset_url }}" alt="" class="vsp-{{ section.id }}__nav-logo" width="590" height="706" loading="lazy">
+        </span>
+        <span class="vsp-{{ section.id }}__nav-logo-wrap" aria-hidden="true">
+          <img src="{{ 'logo_HS.svg' | asset_url }}" alt="" class="vsp-{{ section.id }}__nav-logo" width="590" height="706" loading="lazy">
+        </span>
+      </span>
+      <span class="vsp-{{ section.id }}__nav-mark" aria-hidden="true">&reg;</span>
+    </div>
+
+    <div class="vsp-{{ section.id }}__nav-right">
+      <p class="vsp-{{ section.id }}__cta">
+        <button
+          type="button"
+          class="vsp-{{ section.id }}__cta-contact"
+          id="vsp-contact-trigger-{{ section.id }}"
+          aria-expanded="false"
+          aria-controls="vsp-contact-dialog-{{ section.id }}"
+        >
+          {{- cta_first | default: 'contact' -}}
+        </button>
+        {%- if cta_second != '' -%}
+          <button
+            type="button"
+            class="vsp-{{ section.id }}__cta-contact vsp-{{ section.id }}__cta-about"
+            id="vsp-about-trigger-{{ section.id }}"
+            aria-expanded="false"
+            aria-controls="vsp-about-dialog-{{ section.id }}"
+          >
+            {{- cta_second -}}
+          </button>
+        {%- endif -%}
+        {%- if cta_tail_joined != '' -%}
+          <span class="vsp-{{ section.id }}__cta-rest">{{ cta_tail_joined }}</span>
+        {%- endif -%}
+      </p>
+    </div>
+  </header>
+
+  <div class="vsp-{{ section.id }}__main">
+    <div class="vsp-{{ section.id }}__col vsp-{{ section.id }}__col--left">
+      <div class="vsp-{{ section.id }}__tile vsp-{{ section.id }}__tile--white"></div>
+      <div class="vsp-{{ section.id }}__tile vsp-{{ section.id }}__tile--black"></div>
+      <div class="vsp-{{ section.id }}__tile vsp-{{ section.id }}__tile--red"></div>
+      <div class="vsp-{{ section.id }}__tile vsp-{{ section.id }}__tile--blue"></div>
+    </div>
+    <div class="vsp-{{ section.id }}__col">
+      <div class="vsp-{{ section.id }}__tile vsp-{{ section.id }}__tile--white"></div>
+      <div class="vsp-{{ section.id }}__tile vsp-{{ section.id }}__tile--black"></div>
+      <div class="vsp-{{ section.id }}__tile vsp-{{ section.id }}__tile--red"></div>
+      <div class="vsp-{{ section.id }}__tile vsp-{{ section.id }}__tile--blue"></div>
+    </div>
+  </div>
+
+  <div
+    id="vsp-contact-dialog-{{ section.id }}"
+    class="vsp-{{ section.id }}__contact-root"
+    role="dialog"
+    aria-modal="true"
+    aria-hidden="true"
+    aria-labelledby="vsp-contact-title-{{ section.id }}"
+  >
+    <aside class="vsp-{{ section.id }}__contact-panel">
+      <button type="button" class="vsp-{{ section.id }}__contact-close" data-vsp-close-contact>[CLOSE]</button>
+      <h2 class="vsp-{{ section.id }}__contact-title" id="vsp-contact-title-{{ section.id }}">contact</h2>
+
+      {%- form 'contact', id: vampire_form_id, class: vampire_form_class -%}
+        <div
+          id="vsp-contact-success-{{ section.id }}"
+          class="vsp-{{ section.id }}__contact-status"
+          {% unless form.posted_successfully? %}
+            hidden
+          {% endunless %}
+          tabindex="-1"
+        >
+          {{ 'templates.contact.form.post_success' | t }}
+        </div>
+
+        {%- if form.errors -%}
+          <div class="vsp-{{ section.id }}__contact-status" role="alert" tabindex="-1">
+            {{ 'templates.contact.form.error_heading' | t }}
+            {%- if form.errors contains 'email' -%}
+              — {{ form.errors.messages.email }}
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        <div
+          id="vsp-contact-fields-{{ section.id }}"
+          {% if form.posted_successfully? %}
+            hidden
+          {% endif %}
+        >
+          <div class="vsp-{{ section.id }}__contact-field">
+            <label class="visually-hidden" for="VspContact-name-{{ section.id }}">
+              {{- 'templates.contact.form.name' | t -}}
+            </label>
+            <input
+              type="text"
+              class="vsp-{{ section.id }}__contact-input"
+              id="VspContact-name-{{ section.id }}"
+              name="contact[{{ 'templates.contact.form.name' | t }}]"
+              autocomplete="name"
+              placeholder="{{ 'templates.contact.form.name' | t }}*"
+              value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+              required
+            >
+          </div>
+
+          <div class="vsp-{{ section.id }}__contact-field">
+            <label class="visually-hidden" for="VspContact-email-{{ section.id }}">
+              {{- 'templates.contact.form.email' | t -}}
+            </label>
+            <input
+              type="email"
+              class="vsp-{{ section.id }}__contact-input"
+              id="VspContact-email-{{ section.id }}"
+              name="contact[email]"
+              autocomplete="email"
+              autocapitalize="off"
+              spellcheck="false"
+              placeholder="{{ 'templates.contact.form.email' | t }}*"
+              value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+              aria-required="true"
+              {% if form.errors contains 'email' %}
+                aria-invalid="true"
+              {% endif %}
+              required
+            >
+          </div>
+
+          <div class="vsp-{{ section.id }}__contact-field">
+            <label class="visually-hidden" for="VspContact-body-{{ section.id }}">
+              {{- 'templates.contact.form.comment' | t -}}
+            </label>
+            <textarea
+              class="vsp-{{ section.id }}__contact-textarea"
+              id="VspContact-body-{{ section.id }}"
+              name="contact[{{ 'templates.contact.form.comment' | t }}]"
+              placeholder="{{ 'templates.contact.form.comment' | t }}*"
+              rows="5"
+              required
+            >
+              {{- form.body -}}
+            </textarea>
+          </div>
+
+          <div class="vsp-{{ section.id }}__contact-legal">
+            <label class="vsp-{{ section.id }}__contact-legal-label">
+              <input
+                class="vsp-{{ section.id }}__contact-checkbox"
+                type="checkbox"
+                name="contact[Legal terms accepted]"
+                value="yes"
+                required
+              >
+              <span class="vsp-{{ section.id }}__contact-legal-copy">
+                <span class="vsp-{{ section.id }}__contact-legal-preface">I accept</span>
+                {%- if vampire_terms_url != blank -%}
+                  <a href="{{ vampire_terms_url }}" class="vsp-{{ section.id }}__contact-legal-link" data-vsp-contact-legal-about>legal terms</a>
+                {%- else -%}
+                  <button type="button" class="vsp-{{ section.id }}__contact-legal-link" data-vsp-contact-legal-about>
+                    legal terms
+                  </button>
+                {%- endif -%}
+              </span>
+            </label>
+          </div>
+
+          <button type="submit" class="vsp-{{ section.id }}__contact-send">send</button>
+        </div>
+      {%- endform -%}
+    </aside>
+    <button
+      type="button"
+      class="vsp-{{ section.id }}__contact-scrim"
+      aria-label="{{ 'accessibility.close' | t }}"
+      data-vsp-close-contact
+    ></button>
+  </div>
+
+  <div
+    id="vsp-about-dialog-{{ section.id }}"
+    class="vsp-{{ section.id }}__about-root"
+    role="dialog"
+    aria-modal="true"
+    aria-hidden="true"
+    aria-labelledby="vsp-about-title-{{ section.id }}"
+  >
+    <button
+      type="button"
+      class="vsp-{{ section.id }}__about-scrim"
+      aria-label="{{ 'accessibility.close' | t }}"
+      data-vsp-close-about
+    ></button>
+    <aside class="vsp-{{ section.id }}__about-panel">
+      <div class="vsp-{{ section.id }}__about-header">
+        <button type="button" class="vsp-{{ section.id }}__about-close" data-vsp-close-about>[CLOSE]</button>
+        <h2 class="vsp-{{ section.id }}__about-title" id="vsp-about-title-{{ section.id }}">about</h2>
+      </div>
+      <div class="vsp-{{ section.id }}__about-mid">
+        <div class="vsp-{{ section.id }}__about-copy" lang="{{ section.settings.about_locale }}">
+          {{ section.settings.about_richtext }}
+        </div>
+      </div>
+      <div class="vsp-{{ section.id }}__about-footer">
+        <span class="vsp-{{ section.id }}__about-legal-title">legal</span>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<script>
+  (function () {
+    const sectionId = '{{ section.id }}';
+    const sectionEl = document.getElementById('shopify-section-' + sectionId);
+    const prefix = '.vsp-' + sectionId;
+
+    function qs(sel, root) {
+      return (root || document).querySelector(sel);
+    }
+
+    if (!sectionEl) return;
+
+    const root = document.getElementById('vsp-contact-dialog-' + sectionId);
+    const trigger = document.getElementById('vsp-contact-trigger-' + sectionId);
+    const aboutRoot = document.getElementById('vsp-about-dialog-' + sectionId);
+    const aboutTrigger = document.getElementById('vsp-about-trigger-' + sectionId);
+
+    function updateBodyOverflow() {
+      var contactOpen = root && root.classList.contains('is-open');
+      var aboutOpen = aboutRoot && aboutRoot.classList.contains('is-open');
+      document.documentElement.style.overflow = contactOpen || aboutOpen ? 'hidden' : '';
+      if (sectionEl) {
+        sectionEl.classList.toggle('vsp-about-open', Boolean(aboutOpen));
+      }
+    }
+
+    function openDrawer() {
+      if (!root) return;
+      if (aboutRoot) {
+        aboutRoot.classList.remove('is-open');
+        aboutRoot.setAttribute('aria-hidden', 'true');
+        if (aboutTrigger) aboutTrigger.setAttribute('aria-expanded', 'false');
+      }
+      root.classList.add('is-open');
+      root.setAttribute('aria-hidden', 'false');
+      if (trigger) trigger.setAttribute('aria-expanded', 'true');
+      updateBodyOverflow();
+      var toFocus = qs(prefix + '__contact-close', root);
+      if (toFocus) toFocus.focus({ preventScroll: true });
+    }
+
+    function closeDrawer() {
+      if (!root) return;
+      root.classList.remove('is-open');
+      root.setAttribute('aria-hidden', 'true');
+      if (trigger) trigger.setAttribute('aria-expanded', 'false');
+      updateBodyOverflow();
+      if (trigger) trigger.focus({ preventScroll: true });
+    }
+
+    function openAboutDrawer() {
+      if (!aboutRoot) return;
+      if (root) {
+        root.classList.remove('is-open');
+        root.setAttribute('aria-hidden', 'true');
+        if (trigger) trigger.setAttribute('aria-expanded', 'false');
+      }
+      aboutRoot.classList.add('is-open');
+      aboutRoot.setAttribute('aria-hidden', 'false');
+      if (aboutTrigger) aboutTrigger.setAttribute('aria-expanded', 'true');
+      updateBodyOverflow();
+      var fc = qs(prefix + '__about-close', aboutRoot);
+      if (fc) fc.focus({ preventScroll: true });
+    }
+
+    function closeAboutDrawer() {
+      if (!aboutRoot) return;
+      aboutRoot.classList.remove('is-open');
+      aboutRoot.setAttribute('aria-hidden', 'true');
+      if (aboutTrigger) aboutTrigger.setAttribute('aria-expanded', 'false');
+      updateBodyOverflow();
+      if (aboutTrigger) aboutTrigger.focus({ preventScroll: true });
+    }
+
+    if (trigger && root) trigger.addEventListener('click', openDrawer);
+    if (aboutTrigger && aboutRoot) aboutTrigger.addEventListener('click', openAboutDrawer);
+
+    if (root) {
+      root.addEventListener('click', function (e) {
+        if (!root.classList.contains('is-open')) return;
+        if (e.target.closest('[data-vsp-contact-legal-about]')) {
+          e.preventDefault();
+          e.stopPropagation();
+          openAboutDrawer();
+          return;
+        }
+        if (e.target.closest('[data-vsp-close-contact]')) closeDrawer();
+      });
+    }
+
+    if (aboutRoot) {
+      aboutRoot.addEventListener('click', function (e) {
+        if (!aboutRoot.classList.contains('is-open')) return;
+        if (e.target.closest('[data-vsp-close-about]')) closeAboutDrawer();
+      });
+    }
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape') return;
+      if (root && root.classList.contains('is-open')) closeDrawer();
+      else if (aboutRoot && aboutRoot.classList.contains('is-open')) closeAboutDrawer();
+    });
+
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('contact_posted') === 'true') {
+      var successEl = document.getElementById('vsp-contact-success-' + sectionId);
+      var fieldsEl = document.getElementById('vsp-contact-fields-' + sectionId);
+      if (successEl) successEl.hidden = false;
+      if (fieldsEl) fieldsEl.hidden = true;
+      openDrawer();
+      if (successEl) successEl.focus({ preventScroll: true });
+    }
+
+    var okBanner = document.getElementById('vsp-contact-success-' + sectionId);
+    var fieldWrap = document.getElementById('vsp-contact-fields-' + sectionId);
+    if (okBanner && fieldWrap && !okBanner.hidden && fieldWrap.hidden) {
+      openDrawer();
+      okBanner.focus({ preventScroll: true });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Shop vampire inspired",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Top bar"
+    },
+    {
+      "type": "text",
+      "id": "aria_label",
+      "label": "Accessibility label",
+      "default": "Shop"
+    },
+    {
+      "type": "text",
+      "id": "back_label",
+      "label": "Back link text",
+      "default": ">back"
+    },
+    {
+      "type": "url",
+      "id": "home_url",
+      "label": "Back link URL",
+      "info": "Main landing / homepage. Defaults to your store homepage if empty."
+    },
+    {
+      "type": "text",
+      "id": "brand_wordmark",
+      "label": "Center logos alt text",
+      "default": "Hoopers Soul"
+    },
+    {
+      "type": "text",
+      "id": "nav_cta_words",
+      "label": "Right side buttons label",
+      "default": "contact about",
+      "info": "First word opens contact; second opens about (matched to landing)."
+    },
+    {
+      "type": "url",
+      "id": "legal_terms_url",
+      "label": "Legal terms URL (optional)"
+    },
+    {
+      "type": "header",
+      "content": "About panel"
+    },
+    {
+      "type": "text",
+      "id": "about_locale",
+      "label": "About copy language attribute",
+      "default": "en"
+    },
+    {
+      "type": "richtext",
+      "id": "about_richtext",
+      "label": "About copy",
+      "default": "<p>Hoopers Soul is more than clothing it&rsquo;s a mindset built on dedication, resilience, and the courage to step into the unknown.</p><p>The brand was created for those who carry a vision in their head 24/7. The ones who can&rsquo;t ignore what they want to become, even when reality doesn&rsquo;t match it yet.</p><p>Rooted in basketball culture but extending far beyond it, Hoopers Soul represents a lifestyle of discipline, self-belief, and constant growth.</p><p>Wearing Hoopers Soul means choosing to step into the unknown, driven by a vision you refuse to let go of.</p>"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop vampire inspired"
+    }
+  ]
+}
+{% endschema %}

@@ -254,7 +254,8 @@
     font-size: clamp(2.1rem, 5.7vw, 6.4rem);
     line-height: 0.9;
     text-transform: uppercase;
-    z-index: 3;
+    /* Above corner copy / center so the link receives clicks and shows a pointer cursor */
+    z-index: 6;
   }
 
   .vampire-landing-{{ section.id }}__bottom-label--left {
@@ -263,6 +264,25 @@
 
   .vampire-landing-{{ section.id }}__bottom-label--right {
     right: clamp(5px, 0.9vw, 10px);
+  }
+
+  .vampire-landing-{{ section.id }}__bottom-label-link {
+    color: inherit;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .vampire-landing-{{ section.id }}__bottom-label-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.12em;
+  }
+
+  .vampire-landing-{{ section.id }}__bottom-label-link:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
   }
 
   .vampire-landing-{{ section.id }}__corner-copy {
@@ -1063,12 +1083,27 @@
     </span>
   </p>
 
-  <p class="vampire-landing-{{ section.id }}__bottom-label vampire-landing-{{ section.id }}__bottom-label--left">
-    {{ section.settings.left_bottom_label }}
-  </p>
-  <p class="vampire-landing-{{ section.id }}__bottom-label vampire-landing-{{ section.id }}__bottom-label--right">
-    {{ section.settings.right_bottom_label }}
-  </p>
+  {%- liquid
+    assign vampire_shop_href = section.settings.shop_page_url
+    if vampire_shop_href == blank and pages.shop != blank
+      assign vampire_shop_href = pages.shop.url
+    endif
+    if vampire_shop_href == blank
+      assign vampire_shop_href = '/pages/shop'
+    endif
+  -%}
+  <a
+    href="{{ vampire_shop_href }}"
+    class="vampire-landing-{{ section.id }}__bottom-label vampire-landing-{{ section.id }}__bottom-label--left vampire-landing-{{ section.id }}__bottom-label-link"
+  >
+    {{- section.settings.left_bottom_label | escape -}}
+  </a>
+  <a
+    href="{{ vampire_shop_href }}"
+    class="vampire-landing-{{ section.id }}__bottom-label vampire-landing-{{ section.id }}__bottom-label--right vampire-landing-{{ section.id }}__bottom-label-link"
+  >
+    {{- section.settings.right_bottom_label | escape -}}
+  </a>
 
   <p class="vampire-landing-{{ section.id }}__corner-copy vampire-landing-{{ section.id }}__corner-copy--left">
     {{ section.settings.small_copy }}
@@ -1540,6 +1575,12 @@
       "id": "small_copy",
       "label": "Small repeated copy",
       "default": "Everything we do aims at building bridges between youth culture and music, navigating through talent, media, and brands."
+    },
+    {
+      "type": "url",
+      "id": "shop_page_url",
+      "label": "Shop page URL (optional)",
+      "info": "Overrides automatic shop link. If empty, uses the page with handle shop when it exists, otherwise /pages/shop."
     }
   ],
   "presets": [
