@@ -186,7 +186,13 @@
     font-size: clamp(1.2rem, 2.7vw, 3.2rem);
     line-height: 0.9;
     text-transform: lowercase;
-    z-index: 3;
+    z-index: 10002;
+  }
+
+  #shopify-section-{{ section.id }}.vampire-landing-about-drawer-open .vampire-landing-{{ section.id }}__cta {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
   }
 
   .vampire-landing-{{ section.id }}__center-copy {
@@ -298,7 +304,9 @@
       font-size: clamp(2.7rem, 9.6vw, 6rem);
     }
 
-    .vampire-landing-{{ section.id }}__contact-title {
+    .vampire-landing-{{ section.id }}__contact-title,
+    .vampire-landing-{{ section.id }}__about-title,
+    .vampire-landing-{{ section.id }}__about-legal-title {
       font-size: calc(1.16 * clamp(2.7rem, 9.6vw, 6rem));
     }
   }
@@ -372,6 +380,10 @@
     margin-inline-start: 0.35em;
   }
 
+  .vampire-landing-{{ section.id }}__cta-about {
+    margin-inline-start: 0.35em;
+  }
+
   .vampire-landing-{{ section.id }}__contact-root {
     position: fixed;
     inset: 0;
@@ -388,6 +400,11 @@
   .vampire-landing-{{ section.id }}__contact-root.is-open {
     pointer-events: auto;
     visibility: visible;
+  }
+
+  .vampire-landing-{{ section.id }}__contact-root:not(.is-open) .vampire-landing-{{ section.id }}__contact-panel,
+  .vampire-landing-{{ section.id }}__contact-root:not(.is-open) .vampire-landing-{{ section.id }}__contact-scrim {
+    pointer-events: none;
   }
 
   .vampire-landing-{{ section.id }}__contact-panel {
@@ -533,7 +550,7 @@
   }
 
   .vampire-landing-{{ section.id }}__contact-legal {
-    margin: clamp(4px, 0.8vw, 10px) 0 clamp(12px, 1.6vw, 20px);
+    margin: clamp(4px, 0.8vw, 10px) 0 clamp(14px, 1.85vw, 22px);
     font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
     font-size: clamp(1.35rem, 3.6vw, 2rem);
     font-weight: 400;
@@ -597,8 +614,25 @@
     text-underline-offset: 0.12em;
   }
 
+  button.vampire-landing-{{ section.id }}__contact-legal-link {
+    font: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    font-family: inherit;
+    letter-spacing: inherit;
+    line-height: inherit;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: inline;
+    text-align: inherit;
+    color: inherit;
+  }
+
   .vampire-landing-{{ section.id }}__contact-send {
-    margin: clamp(-14px, -1.4vw, -6px) 0 0;
+    margin: clamp(-7px, -0.65vw, -2px) 0 0;
     padding: 0;
     border: none;
     background: none;
@@ -628,6 +662,195 @@
     background: transparent;
   }
 
+  .vampire-landing-{{ section.id }}__about-root {
+    position: fixed;
+    inset: 0;
+    z-index: 9010;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 0;
+    height: 100vh;
+    height: 100dvh;
+    pointer-events: none;
+    visibility: hidden;
+    overflow: hidden;
+  }
+
+  .vampire-landing-{{ section.id }}__about-root.is-open {
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  .vampire-landing-{{ section.id }}__about-root:not(.is-open) .vampire-landing-{{ section.id }}__about-panel,
+  .vampire-landing-{{ section.id }}__about-root:not(.is-open) .vampire-landing-{{ section.id }}__about-scrim {
+    pointer-events: none;
+  }
+
+  .vampire-landing-{{ section.id }}__about-scrim {
+    grid-column: 1;
+    grid-row: 1;
+    min-height: 0;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    background: transparent;
+  }
+
+  .vampire-landing-{{ section.id }}__about-panel {
+    position: relative;
+    grid-column: 2;
+    grid-row: 1;
+    height: 100%;
+    min-height: 0;
+    background: #0500ff;
+    color: #fff;
+    overflow: hidden;
+    padding: clamp(10px, 1.2vw, 18px) clamp(10px, 1.4vw, 22px) clamp(20px, 2.5vw, 36px);
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    align-content: start;
+    box-sizing: border-box;
+    isolation: isolate;
+  }
+
+  .vampire-landing-{{ section.id }}__about-header {
+    grid-row: 1;
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-start;
+    gap: clamp(2px, 0.45vw, 8px);
+    width: 100%;
+    box-sizing: border-box;
+    background: #0500ff;
+    pointer-events: auto;
+  }
+
+  .vampire-landing-{{ section.id }}__about-mid {
+    grid-row: 2;
+    position: relative;
+    z-index: 0;
+    min-height: 0;
+    min-width: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    align-self: stretch;
+    box-sizing: border-box;
+    padding-left: clamp(16px, 3.8vw, 56px);
+    padding-top: clamp(10px, 2vw, 22px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
+  .vampire-landing-{{ section.id }}__about-copy {
+    margin: 0;
+    padding: 0;
+    width: min(56rem, 100%);
+    max-width: 100%;
+    align-self: flex-end;
+    box-sizing: border-box;
+    border: none;
+    background: none;
+    box-shadow: none;
+    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+    font-size: clamp(1.35rem, 3.6vw, 2rem);
+    font-weight: 300;
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+    color: #fff;
+    direction: ltr;
+    text-align: justify;
+    text-align-last: left;
+    text-justify: inter-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    overflow-wrap: break-word;
+    outline: none;
+  }
+
+  .vampire-landing-{{ section.id }}__about-copy p {
+    margin: 0;
+    text-align: justify;
+    text-align-last: left;
+  }
+
+  .vampire-landing-{{ section.id }}__about-close {
+    margin: 0;
+    flex-shrink: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+    font-size: clamp(1.35rem, 3.6vw, 2rem);
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    color: #fff;
+    cursor: pointer !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    position: relative;
+    z-index: 4;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  .vampire-landing-{{ section.id }}__about-close:hover {
+    text-decoration: none;
+  }
+
+  .vampire-landing-{{ section.id }}__about-close:focus-visible {
+    text-decoration: none;
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  .vampire-landing-{{ section.id }}__about-title,
+  .vampire-landing-{{ section.id }}__about-legal-title {
+    padding: 0;
+    font-family: 'Proxima Nova', var(--font-heading-family), Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 900;
+    font-size: calc(1.16 * clamp(3.2rem, 8.4vw, 8.8rem));
+    line-height: 0.88;
+    letter-spacing: -0.02em;
+    text-transform: lowercase;
+    color: #fff;
+  }
+
+  .vampire-landing-{{ section.id }}__about-title {
+    margin: -0.08em 0 0;
+  }
+
+  .vampire-landing-{{ section.id }}__about-footer {
+    grid-row: 3;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: clamp(14px, 2.5vw, 28px);
+    background: #0500ff;
+    pointer-events: auto;
+  }
+
+  .vampire-landing-{{ section.id }}__about-legal-title {
+    margin: 0;
+    cursor: default;
+    display: block;
+    user-select: none;
+    text-wrap: balance;
+  }
+
   .vampire-landing-{{ section.id }}__contact-status {
     font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
     font-size: clamp(0.75rem, 1.05vw, 0.9rem);
@@ -636,7 +859,9 @@
   }
 
   @media screen and (max-width: 749px) {
-    .vampire-landing-{{ section.id }}__contact-title {
+    .vampire-landing-{{ section.id }}__contact-title,
+    .vampire-landing-{{ section.id }}__about-title,
+    .vampire-landing-{{ section.id }}__about-legal-title {
       font-size: calc(1.16 * clamp(2.3rem, 10.2vw, 4.4rem));
     }
 
@@ -778,6 +1003,21 @@
   {%- liquid
     assign cta_words = section.settings.top_right_label | split: ' '
     assign cta_first = cta_words | first
+    assign cta_second = ''
+    assign cta_tail_joined = ''
+    if cta_words.size > 1
+      for w in cta_words offset: 1
+        if forloop.first
+          assign cta_second = w
+        else
+          if cta_tail_joined == ''
+            assign cta_tail_joined = w
+          else
+            assign cta_tail_joined = cta_tail_joined | append: ' ' | append: w
+          endif
+        endif
+      endfor
+    endif
     assign vampire_form_id = 'ContactForm-vampire-' | append: section.id
     assign vampire_form_class = 'vampire-landing-' | append: section.id | append: '__contact-form-inner'
     assign vampire_terms_url = shop.terms_of_service.url
@@ -795,11 +1035,20 @@
     >
       {{- cta_first | default: 'contact' -}}
     </button>
-    {%- if cta_words.size > 1 -%}
+    {%- if cta_second != '' -%}
+      <button
+        type="button"
+        class="vampire-landing-{{ section.id }}__cta-contact vampire-landing-{{ section.id }}__cta-about"
+        id="vampire-about-trigger-{{ section.id }}"
+        aria-expanded="false"
+        aria-controls="vampire-about-dialog-{{ section.id }}"
+      >
+        {{- cta_second -}}
+      </button>
+    {%- endif -%}
+    {%- if cta_tail_joined != '' -%}
       <span class="vampire-landing-{{ section.id }}__cta-rest">
-        {%- for w in cta_words offset: 1 -%}
-          {{- w -}}{%- unless forloop.last %} {% endunless -%}
-        {%- endfor -%}
+        {{ cta_tail_joined }}
       </span>
     {%- endif -%}
   </p>
@@ -942,12 +1191,17 @@
                   <a
                     href="{{ vampire_terms_url }}"
                     class="vampire-landing-{{ section.id }}__contact-legal-link"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    data-vampire-contact-legal-about
                     >legal terms</a
                   >
                 {%- else -%}
-                  <span class="vampire-landing-{{ section.id }}__contact-legal-link">legal terms</span>
+                  <button
+                    type="button"
+                    class="vampire-landing-{{ section.id }}__contact-legal-link"
+                    data-vampire-contact-legal-about
+                  >
+                    legal terms
+                  </button>
                 {%- endif -%}
               </span>
             </label>
@@ -963,6 +1217,56 @@
       aria-label="{{ 'accessibility.close' | t }}"
       data-vampire-close-contact
     ></button>
+  </div>
+
+  <div
+    id="vampire-about-dialog-{{ section.id }}"
+    class="vampire-landing-{{ section.id }}__about-root"
+    role="dialog"
+    aria-modal="true"
+    aria-hidden="true"
+    aria-labelledby="vampire-about-title-{{ section.id }}"
+  >
+    <button
+      type="button"
+      class="vampire-landing-{{ section.id }}__about-scrim"
+      aria-label="{{ 'accessibility.close' | t }}"
+      data-vampire-close-about
+    ></button>
+    <aside class="vampire-landing-{{ section.id }}__about-panel">
+      <div class="vampire-landing-{{ section.id }}__about-header">
+        <button
+          type="button"
+          class="vampire-landing-{{ section.id }}__about-close"
+          data-vampire-close-about
+        >
+          [CLOSE]
+        </button>
+        <h2 class="vampire-landing-{{ section.id }}__about-title" id="vampire-about-title-{{ section.id }}">about</h2>
+      </div>
+      <div class="vampire-landing-{{ section.id }}__about-mid">
+        <div class="vampire-landing-{{ section.id }}__about-copy" lang="en">
+          <p>
+            Hoopers Soul is more than clothing it&rsquo;s a mindset built on dedication, resilience, and the courage to step into the unknown.
+          </p>
+          <p>
+            The brand was created for those who carry a vision in their head 24/7. The ones who can&rsquo;t ignore what they want to become, even when reality doesn&rsquo;t match it yet. It&rsquo;s inspired by that moment when you realize you might not be ready, but you move forward anyway, because not trying would feel worse.
+          </p>
+          <p>
+            Rooted in basketball culture but extending far beyond it, Hoopers Soul represents a lifestyle of discipline, self-belief, and constant growth. It&rsquo;s about showing up every day, embracing discomfort, and trusting the process without needing to see the final outcome.
+          </p>
+          <p>
+            We don&rsquo;t focus on the winning moment we focus on the work, the doubt, the small progress, and the decision to keep going.
+          </p>
+          <p>
+            Wearing Hoopers Soul means choosing to step into the unknown, driven by a vision you refuse to let go of.
+          </p>
+        </div>
+      </div>
+      <div class="vampire-landing-{{ section.id }}__about-footer">
+        <span class="vampire-landing-{{ section.id }}__about-legal-title">legal</span>
+      </div>
+    </aside>
   </div>
 </section>
 
@@ -1015,14 +1319,28 @@
 
     const root = document.getElementById('vampire-contact-dialog-' + sectionId);
     const trigger = document.getElementById('vampire-contact-trigger-' + sectionId);
-    const closeNodes = sectionEl.querySelectorAll('[data-vampire-close-contact]');
+    const aboutRoot = document.getElementById('vampire-about-dialog-' + sectionId);
+    const aboutTrigger = document.getElementById('vampire-about-trigger-' + sectionId);
+    function updateBodyOverflow() {
+      var contactOpen = root && root.classList.contains('is-open');
+      var aboutOpen = aboutRoot && aboutRoot.classList.contains('is-open');
+      document.documentElement.style.overflow = contactOpen || aboutOpen ? 'hidden' : '';
+      if (sectionEl) {
+        sectionEl.classList.toggle('vampire-landing-about-drawer-open', Boolean(aboutOpen));
+      }
+    }
 
     function openDrawer() {
       if (!root) return;
+      if (aboutRoot) {
+        aboutRoot.classList.remove('is-open');
+        aboutRoot.setAttribute('aria-hidden', 'true');
+        if (aboutTrigger) aboutTrigger.setAttribute('aria-expanded', 'false');
+      }
       root.classList.add('is-open');
       root.setAttribute('aria-hidden', 'false');
       if (trigger) trigger.setAttribute('aria-expanded', 'true');
-      document.documentElement.style.overflow = 'hidden';
+      updateBodyOverflow();
       var toFocus = root.querySelector('.vampire-landing-' + sectionId + '__contact-close');
       if (toFocus) toFocus.focus({ preventScroll: true });
     }
@@ -1032,8 +1350,32 @@
       root.classList.remove('is-open');
       root.setAttribute('aria-hidden', 'true');
       if (trigger) trigger.setAttribute('aria-expanded', 'false');
-      document.documentElement.style.overflow = '';
+      updateBodyOverflow();
       if (trigger) trigger.focus({ preventScroll: true });
+    }
+
+    function openAboutDrawer() {
+      if (!aboutRoot) return;
+      if (root) {
+        root.classList.remove('is-open');
+        root.setAttribute('aria-hidden', 'true');
+        if (trigger) trigger.setAttribute('aria-expanded', 'false');
+      }
+      aboutRoot.classList.add('is-open');
+      aboutRoot.setAttribute('aria-hidden', 'false');
+      if (aboutTrigger) aboutTrigger.setAttribute('aria-expanded', 'true');
+      updateBodyOverflow();
+      var toFocusAbout = aboutRoot.querySelector('.vampire-landing-' + sectionId + '__about-close');
+      if (toFocusAbout) toFocusAbout.focus({ preventScroll: true });
+    }
+
+    function closeAboutDrawer() {
+      if (!aboutRoot) return;
+      aboutRoot.classList.remove('is-open');
+      aboutRoot.setAttribute('aria-hidden', 'true');
+      if (aboutTrigger) aboutTrigger.setAttribute('aria-expanded', 'false');
+      updateBodyOverflow();
+      if (aboutTrigger) aboutTrigger.focus({ preventScroll: true });
     }
 
     if (trigger && root) {
@@ -1042,15 +1384,42 @@
       });
     }
 
-    closeNodes.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        closeDrawer();
+    if (aboutTrigger && aboutRoot) {
+      aboutTrigger.addEventListener('click', function () {
+        openAboutDrawer();
       });
-    });
+    }
+
+    if (root) {
+      root.addEventListener('click', function (e) {
+        if (!root.classList.contains('is-open')) return;
+        if (e.target.closest('[data-vampire-contact-legal-about]')) {
+          e.preventDefault();
+          e.stopPropagation();
+          openAboutDrawer();
+          return;
+        }
+        if (e.target.closest('[data-vampire-close-contact]')) {
+          closeDrawer();
+        }
+      });
+    }
+
+    if (aboutRoot) {
+      aboutRoot.addEventListener('click', function (e) {
+        if (!aboutRoot.classList.contains('is-open')) return;
+        if (e.target.closest('[data-vampire-close-about]')) {
+          closeAboutDrawer();
+        }
+      });
+    }
 
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && root && root.classList.contains('is-open')) {
+      if (e.key !== 'Escape') return;
+      if (root && root.classList.contains('is-open')) {
         closeDrawer();
+      } else if (aboutRoot && aboutRoot.classList.contains('is-open')) {
+        closeAboutDrawer();
       }
     });
 
@@ -1134,7 +1503,7 @@
       "id": "top_right_label",
       "label": "Top right label",
       "default": "contact about",
-      "info": "The first word opens the yellow contact panel; the rest of the text follows it (e.g. contact about)."
+      "info": "First word opens the contact panel; second word opens the blue about panel (only one open at a time). Any further words display after those buttons."
     },
     {
       "type": "url",
