@@ -297,6 +297,10 @@
       bottom: clamp(10px, 1.6vw, 20px);
       font-size: clamp(2.7rem, 9.6vw, 6rem);
     }
+
+    .vampire-landing-{{ section.id }}__contact-title {
+      font-size: calc(1.16 * clamp(2.7rem, 9.6vw, 6rem));
+    }
   }
 
   @media screen and (max-width: 749px) {
@@ -338,6 +342,306 @@
     .vampire-landing-{{ section.id }}__bottom-label {
       bottom: 32px;
       font-size: clamp(2.2rem, 12vw, 3.6rem);
+    }
+  }
+
+  .vampire-landing-{{ section.id }}__cta-contact {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    font: inherit;
+    color: inherit;
+    text-transform: inherit;
+    line-height: inherit;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .vampire-landing-{{ section.id }}__cta-contact:hover {
+    text-decoration: none;
+  }
+
+  .vampire-landing-{{ section.id }}__cta-contact:focus-visible {
+    text-decoration: none;
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  .vampire-landing-{{ section.id }}__cta-rest {
+    margin-inline-start: 0.35em;
+  }
+
+  .vampire-landing-{{ section.id }}__contact-root {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 0;
+    height: 100vh;
+    height: 100dvh;
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  .vampire-landing-{{ section.id }}__contact-root.is-open {
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  .vampire-landing-{{ section.id }}__contact-panel {
+    grid-column: 1;
+    grid-row: 1;
+    background: #fccb00;
+    color: #000;
+    overflow: auto;
+    padding: clamp(10px, 1.2vw, 18px) clamp(10px, 1.4vw, 22px) clamp(20px, 2.5vw, 36px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    box-sizing: border-box;
+  }
+
+  .vampire-landing-{{ section.id }}__contact-close {
+    margin: 0 0 clamp(4px, 0.55vw, 9px);
+    padding: 0;
+    border: none;
+    background: none;
+    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+    font-size: clamp(1.35rem, 3.6vw, 2rem);
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    color: #000;
+    cursor: pointer;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .vampire-landing-{{ section.id }}__contact-close:hover {
+    text-decoration: none;
+  }
+
+  .vampire-landing-{{ section.id }}__contact-close:focus-visible {
+    text-decoration: none;
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
+
+  .vampire-landing-{{ section.id }}__contact-title {
+    margin: -0.08em 0 clamp(14px, 2.2vw, 28px);
+    padding: 0;
+    font-family: 'Proxima Nova', var(--font-heading-family), Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 900;
+    font-size: calc(1.16 * clamp(3.2rem, 8.4vw, 8.8rem));
+    line-height: 0.88;
+    letter-spacing: -0.02em;
+    text-transform: lowercase;
+    color: #000;
+  }
+
+  .vampire-landing-{{ section.id }}__contact-form-inner {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .vampire-landing-{{ section.id }}__contact-field {
+    --vl-contact-field-inset: clamp(5px, 0.85vw, 8px);
+    position: relative;
+    margin-bottom: clamp(14px, 2vw, 22px);
+    border: 1px solid #000;
+    background: #fccb00;
+    box-sizing: border-box;
+  }
+
+  .vampire-landing-{{ section.id }}__contact-input,
+  .vampire-landing-{{ section.id }}__contact-textarea {
+    display: block;
+    width: 100%;
+    margin: 0;
+    border: none;
+    background: transparent;
+    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+    font-size: clamp(1.35rem, 3.6vw, 2rem);
+    font-weight: 300;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    color: #000;
+    box-sizing: border-box;
+  }
+
+  .vampire-landing-{{ section.id }}__contact-input {
+    padding: var(--vl-contact-field-inset);
+    height: calc(var(--vl-contact-field-inset) * 2 + 1.2em);
+    overflow: hidden;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 0;
+    caret-color: #000;
+  }
+
+  .vampire-landing-{{ section.id }}__contact-textarea {
+    padding: var(--vl-contact-field-inset);
+    /* Five lines at line-height 1.2 → 6em text block */
+    height: calc(var(--vl-contact-field-inset) * 2 + 6em);
+    min-height: calc(var(--vl-contact-field-inset) * 2 + 6em);
+    resize: vertical;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 0;
+    caret-color: #000;
+    vertical-align: top;
+  }
+
+  .vampire-landing-{{ section.id }}__contact-input::placeholder,
+  .vampire-landing-{{ section.id }}__contact-textarea::placeholder {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 300;
+    font-style: normal;
+    letter-spacing: inherit;
+    line-height: 1.2;
+    color: #000;
+    opacity: 1;
+  }
+
+  .vampire-landing-{{ section.id }}__contact-input::-webkit-input-placeholder,
+  .vampire-landing-{{ section.id }}__contact-textarea::-webkit-input-placeholder {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 300;
+    line-height: 1.2;
+    color: #000;
+  }
+
+  .vampire-landing-{{ section.id }}__contact-input::-moz-placeholder,
+  .vampire-landing-{{ section.id }}__contact-textarea::-moz-placeholder {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 300;
+    line-height: 1.2;
+    color: #000;
+    opacity: 1;
+  }
+
+  .vampire-landing-{{ section.id }}__contact-input:focus,
+  .vampire-landing-{{ section.id }}__contact-input:focus-visible,
+  .vampire-landing-{{ section.id }}__contact-textarea:focus,
+  .vampire-landing-{{ section.id }}__contact-textarea:focus-visible {
+    outline: none;
+    box-shadow: none;
+  }
+
+  .vampire-landing-{{ section.id }}__contact-legal {
+    margin: clamp(4px, 0.8vw, 10px) 0 clamp(12px, 1.6vw, 20px);
+    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+    font-size: clamp(1.35rem, 3.6vw, 2rem);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    line-height: 1.35;
+  }
+
+  .vampire-landing-{{ section.id }}__contact-legal-label {
+    display: flex;
+    align-items: center;
+    gap: 0.55em;
+    cursor: pointer;
+    color: #000;
+  }
+
+  .vampire-landing-{{ section.id }}__contact-legal-copy {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 0.45em;
+    row-gap: 0.2em;
+    line-height: 1.35;
+  }
+
+  .vampire-landing-{{ section.id }}__contact-legal-preface {
+    white-space: nowrap;
+  }
+
+  .vampire-landing-{{ section.id }}__contact-checkbox {
+    flex-shrink: 0;
+    width: 1.45em;
+    height: 1.45em;
+    min-width: 1.45em;
+    min-height: 1.45em;
+    aspect-ratio: 1;
+    margin: 0;
+    cursor: pointer;
+    align-self: center;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 1px solid #000;
+    border-radius: 50%;
+    background: #fccb00;
+    box-sizing: border-box;
+  }
+
+  .vampire-landing-{{ section.id }}__contact-checkbox:checked {
+    background: #000;
+    border-color: #000;
+  }
+
+  .vampire-landing-{{ section.id }}__contact-checkbox:focus-visible {
+    outline: 1px solid #000;
+    outline-offset: 3px;
+  }
+
+  .vampire-landing-{{ section.id }}__contact-legal-link {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.12em;
+  }
+
+  .vampire-landing-{{ section.id }}__contact-send {
+    margin: clamp(-14px, -1.4vw, -6px) 0 0;
+    padding: 0;
+    border: none;
+    background: none;
+    font-family: 'Proxima Nova', var(--font-heading-family), Impact, Haettenschweiler, sans-serif;
+    font-weight: 900;
+    font-size: clamp(2.85rem, 7vw, 5rem);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    color: #000;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  .vampire-landing-{{ section.id }}__contact-send:hover,
+  .vampire-landing-{{ section.id }}__contact-send:focus-visible {
+    text-decoration: none;
+  }
+
+  .vampire-landing-{{ section.id }}__contact-scrim {
+    grid-column: 2;
+    grid-row: 1;
+    min-height: 0;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    background: transparent;
+  }
+
+  .vampire-landing-{{ section.id }}__contact-status {
+    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+    font-size: clamp(0.75rem, 1.05vw, 0.9rem);
+    line-height: 1.45;
+    margin: 0 0 1rem;
+  }
+
+  @media screen and (max-width: 749px) {
+    .vampire-landing-{{ section.id }}__contact-title {
+      font-size: calc(1.16 * clamp(2.3rem, 10.2vw, 4.4rem));
+    }
+
+    .vampire-landing-{{ section.id }}__contact-send {
+      font-size: clamp(2.35rem, 11vw, 3.75rem);
     }
   }
 {%- endstyle -%}
@@ -471,7 +775,34 @@
     </span>
     <span class="vampire-landing-{{ section.id }}__wordmark-mark" aria-hidden="true">&reg;</span>
   </h1>
-  <p class="vampire-landing-{{ section.id }}__cta">{{ section.settings.top_right_label }}</p>
+  {%- liquid
+    assign cta_words = section.settings.top_right_label | split: ' '
+    assign cta_first = cta_words | first
+    assign vampire_form_id = 'ContactForm-vampire-' | append: section.id
+    assign vampire_form_class = 'vampire-landing-' | append: section.id | append: '__contact-form-inner'
+    assign vampire_terms_url = shop.terms_of_service.url
+    if vampire_terms_url == blank and section.settings.legal_terms_url != blank
+      assign vampire_terms_url = section.settings.legal_terms_url
+    endif
+  -%}
+  <p class="vampire-landing-{{ section.id }}__cta">
+    <button
+      type="button"
+      class="vampire-landing-{{ section.id }}__cta-contact"
+      id="vampire-contact-trigger-{{ section.id }}"
+      aria-expanded="false"
+      aria-controls="vampire-contact-dialog-{{ section.id }}"
+    >
+      {{- cta_first | default: 'contact' -}}
+    </button>
+    {%- if cta_words.size > 1 -%}
+      <span class="vampire-landing-{{ section.id }}__cta-rest">
+        {%- for w in cta_words offset: 1 -%}
+          {{- w -}}{%- unless forloop.last %} {% endunless -%}
+        {%- endfor -%}
+      </span>
+    {%- endif -%}
+  </p>
 
   <p class="vampire-landing-{{ section.id }}__center-copy">
     <span class="vampire-landing-{{ section.id }}__tel">
@@ -496,49 +827,248 @@
   <p class="vampire-landing-{{ section.id }}__corner-copy vampire-landing-{{ section.id }}__corner-copy--right">
     {{ section.settings.small_copy }}
   </p>
+
+  <div
+    id="vampire-contact-dialog-{{ section.id }}"
+    class="vampire-landing-{{ section.id }}__contact-root"
+    role="dialog"
+    aria-modal="true"
+    aria-hidden="true"
+    aria-labelledby="vampire-contact-title-{{ section.id }}"
+  >
+    <aside class="vampire-landing-{{ section.id }}__contact-panel">
+      <button
+        type="button"
+        class="vampire-landing-{{ section.id }}__contact-close"
+        data-vampire-close-contact
+      >
+        [CLOSE]
+      </button>
+      <h2 class="vampire-landing-{{ section.id }}__contact-title" id="vampire-contact-title-{{ section.id }}">contact</h2>
+
+      {%- form 'contact', id: vampire_form_id, class: vampire_form_class -%}
+        <div
+          id="vampire-contact-success-{{ section.id }}"
+          class="vampire-landing-{{ section.id }}__contact-status"
+          {% unless form.posted_successfully? %}
+            hidden
+          {% endunless %}
+          tabindex="-1"
+        >
+          {{ 'templates.contact.form.post_success' | t }}
+        </div>
+
+        {%- if form.errors -%}
+          <div class="vampire-landing-{{ section.id }}__contact-status" role="alert" tabindex="-1">
+            {{ 'templates.contact.form.error_heading' | t }}
+            {%- if form.errors contains 'email' -%}
+              — {{ form.errors.messages.email }}
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+        <div
+          id="vampire-contact-fields-{{ section.id }}"
+          {% if form.posted_successfully? %}
+            hidden
+          {% endif %}
+        >
+          <div class="vampire-landing-{{ section.id }}__contact-field">
+            <label class="visually-hidden" for="VampireContact-name-{{ section.id }}">
+              {{- 'templates.contact.form.name' | t -}}
+            </label>
+            <input
+              type="text"
+              class="vampire-landing-{{ section.id }}__contact-input"
+              id="VampireContact-name-{{ section.id }}"
+              name="contact[{{ 'templates.contact.form.name' | t }}]"
+              autocomplete="name"
+              placeholder="{{ 'templates.contact.form.name' | t }}*"
+              value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+              required
+            >
+          </div>
+
+          <div class="vampire-landing-{{ section.id }}__contact-field">
+            <label class="visually-hidden" for="VampireContact-email-{{ section.id }}">
+              {{- 'templates.contact.form.email' | t -}}
+            </label>
+            <input
+              type="email"
+              class="vampire-landing-{{ section.id }}__contact-input"
+              id="VampireContact-email-{{ section.id }}"
+              name="contact[email]"
+              autocomplete="email"
+              autocapitalize="off"
+              spellcheck="false"
+              placeholder="{{ 'templates.contact.form.email' | t }}*"
+              value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+              aria-required="true"
+              {% if form.errors contains 'email' %}
+                aria-invalid="true"
+              {% endif %}
+              required
+            >
+          </div>
+
+          <div class="vampire-landing-{{ section.id }}__contact-field">
+            <label class="visually-hidden" for="VampireContact-body-{{ section.id }}">
+              {{- 'templates.contact.form.comment' | t -}}
+            </label>
+            <textarea
+              class="vampire-landing-{{ section.id }}__contact-textarea"
+              id="VampireContact-body-{{ section.id }}"
+              name="contact[{{ 'templates.contact.form.comment' | t }}]"
+              placeholder="{{ 'templates.contact.form.comment' | t }}*"
+              rows="5"
+              required
+            >
+              {{- form.body -}}
+            </textarea>
+          </div>
+
+          <div class="vampire-landing-{{ section.id }}__contact-legal">
+            <label class="vampire-landing-{{ section.id }}__contact-legal-label">
+              <input
+                class="vampire-landing-{{ section.id }}__contact-checkbox"
+                type="checkbox"
+                name="contact[Legal terms accepted]"
+                value="yes"
+                required
+              >
+              <span class="vampire-landing-{{ section.id }}__contact-legal-copy">
+                <span class="vampire-landing-{{ section.id }}__contact-legal-preface">I accept</span>
+                {%- if vampire_terms_url != blank -%}
+                  <a
+                    href="{{ vampire_terms_url }}"
+                    class="vampire-landing-{{ section.id }}__contact-legal-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >legal terms</a
+                  >
+                {%- else -%}
+                  <span class="vampire-landing-{{ section.id }}__contact-legal-link">legal terms</span>
+                {%- endif -%}
+              </span>
+            </label>
+          </div>
+
+          <button type="submit" class="vampire-landing-{{ section.id }}__contact-send">send</button>
+        </div>
+      {%- endform -%}
+    </aside>
+    <button
+      type="button"
+      class="vampire-landing-{{ section.id }}__contact-scrim"
+      aria-label="{{ 'accessibility.close' | t }}"
+      data-vampire-close-contact
+    ></button>
+  </div>
 </section>
 
 <script>
   (function () {
-    const countdownEl = document.getElementById('vampire-countdown-{{ section.id }}');
-    if (!countdownEl) return;
+    const sectionId = '{{ section.id }}';
+    const sectionEl = document.getElementById('shopify-section-' + sectionId);
 
-    // 22 May 2026, 10:00 AM Barcelona time (CEST, UTC+2)
-    const targetTime = Date.UTC(2026, 4, 22, 8, 0, 0);
+    const countdownEl = document.getElementById('vampire-countdown-' + sectionId);
+    if (countdownEl) {
+      // 22 May 2026, 10:00 AM Barcelona time (CEST, UTC+2)
+      const targetTime = Date.UTC(2026, 4, 22, 8, 0, 0);
 
-    const updateCountdown = () => {
-      const now = Date.now();
-      const diff = targetTime - now;
+      const updateCountdown = () => {
+        const now = Date.now();
+        const diff = targetTime - now;
 
-      if (diff <= 0) {
-        countdownEl.textContent = 'LIVE NOW';
-        return;
-      }
+        if (diff <= 0) {
+          countdownEl.textContent = 'LIVE NOW';
+          return;
+        }
 
-      const totalSeconds = Math.floor(diff / 1000);
-      const hoursRemaining = Math.floor(totalSeconds / 3600);
-      const minutesRemaining = Math.floor((totalSeconds % 3600) / 60);
-      const secondsRemaining = totalSeconds % 60;
-      countdownEl.textContent =
-        hoursRemaining +
-        'H ' +
-        String(minutesRemaining).padStart(2, '0') +
-        'M ' +
-        String(secondsRemaining).padStart(2, '0') +
-        'S';
-    };
+        const totalSeconds = Math.floor(diff / 1000);
+        const hoursRemaining = Math.floor(totalSeconds / 3600);
+        const minutesRemaining = Math.floor((totalSeconds % 3600) / 60);
+        const secondsRemaining = totalSeconds % 60;
+        countdownEl.textContent =
+          hoursRemaining +
+          'H ' +
+          String(minutesRemaining).padStart(2, '0') +
+          'M ' +
+          String(secondsRemaining).padStart(2, '0') +
+          'S';
+      };
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    }
 
-    var videoSection = document.getElementById('shopify-section-{{ section.id }}');
-    if (videoSection) {
-      videoSection.querySelectorAll('.vampire-landing-{{ section.id }}__video-bg video').forEach(function (v) {
+    if (sectionEl) {
+      sectionEl.querySelectorAll('.vampire-landing-' + sectionId + '__video-bg video').forEach(function (v) {
         v.setAttribute('playsinline', '');
         v.muted = true;
         var playTry = v.play();
         if (playTry && playTry.catch) playTry.catch(function () {});
       });
+    }
+
+    if (!sectionEl) return;
+
+    const root = document.getElementById('vampire-contact-dialog-' + sectionId);
+    const trigger = document.getElementById('vampire-contact-trigger-' + sectionId);
+    const closeNodes = sectionEl.querySelectorAll('[data-vampire-close-contact]');
+
+    function openDrawer() {
+      if (!root) return;
+      root.classList.add('is-open');
+      root.setAttribute('aria-hidden', 'false');
+      if (trigger) trigger.setAttribute('aria-expanded', 'true');
+      document.documentElement.style.overflow = 'hidden';
+      var toFocus = root.querySelector('.vampire-landing-' + sectionId + '__contact-close');
+      if (toFocus) toFocus.focus({ preventScroll: true });
+    }
+
+    function closeDrawer() {
+      if (!root) return;
+      root.classList.remove('is-open');
+      root.setAttribute('aria-hidden', 'true');
+      if (trigger) trigger.setAttribute('aria-expanded', 'false');
+      document.documentElement.style.overflow = '';
+      if (trigger) trigger.focus({ preventScroll: true });
+    }
+
+    if (trigger && root) {
+      trigger.addEventListener('click', function () {
+        openDrawer();
+      });
+    }
+
+    closeNodes.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        closeDrawer();
+      });
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && root && root.classList.contains('is-open')) {
+        closeDrawer();
+      }
+    });
+
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('contact_posted') === 'true') {
+      var successEl = document.getElementById('vampire-contact-success-' + sectionId);
+      var fieldsEl = document.getElementById('vampire-contact-fields-' + sectionId);
+      if (successEl) successEl.hidden = false;
+      if (fieldsEl) fieldsEl.hidden = true;
+      openDrawer();
+      if (successEl) successEl.focus({ preventScroll: true });
+    }
+
+    var okBanner = document.getElementById('vampire-contact-success-' + sectionId);
+    var fieldWrap = document.getElementById('vampire-contact-fields-' + sectionId);
+    if (okBanner && fieldWrap && !okBanner.hidden && fieldWrap.hidden) {
+      openDrawer();
+      okBanner.focus({ preventScroll: true });
     }
   })();
 </script>
@@ -603,7 +1133,14 @@
       "type": "text",
       "id": "top_right_label",
       "label": "Top right label",
-      "default": "contact about"
+      "default": "contact about",
+      "info": "The first word opens the yellow contact panel; the rest of the text follows it (e.g. contact about)."
+    },
+    {
+      "type": "url",
+      "id": "legal_terms_url",
+      "label": "Legal terms link (optional)",
+      "info": "Linked from “legal terms” in the contact panel. If empty, your store’s Terms of service policy URL is used when set in Shopify admin."
     },
     {
       "type": "text",
