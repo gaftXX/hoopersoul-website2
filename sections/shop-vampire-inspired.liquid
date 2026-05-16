@@ -22,6 +22,7 @@
     color: #fff;
     font-family: var(--font-heading-family);
     isolation: isolate;
+    box-sizing: border-box;
   }
 
   .vsp-{{ section.id }}__nav {
@@ -29,8 +30,8 @@
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
     align-items: center;
-    gap: clamp(10px, 2vw, 20px);
-    padding: clamp(8px, 1.4vw, 14px) clamp(10px, 1.6vw, 22px);
+    gap: clamp(3px, 0.85vw, 8px);
+    padding: 0 clamp(6px, 0.95vw, 12px);
     background: #fff;
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     z-index: 5;
@@ -42,20 +43,26 @@
     min-width: 0;
   }
 
+  .vsp-{{ section.id }}__cta,
   .vsp-{{ section.id }}__back-link {
-    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
-    font-size: clamp(0.8rem, 1.85vw, 0.98rem);
-    font-weight: 400;
-    letter-spacing: 0.04em;
+    /* Larger type; tight line-height keeps the white bar close to the same vertical footprint as before */
+    font-size: clamp(1.32rem, 3.45vw, 2.05rem);
+    line-height: 0.84;
+    text-transform: lowercase;
+    font-weight: 900;
+    font-family: 'Proxima Nova', var(--font-heading-family), Impact, sans-serif;
     color: #000;
-    text-decoration: none;
-    text-transform: uppercase;
-    display: inline-block;
   }
 
-  .vsp-{{ section.id }}__back-link:hover {
-    text-decoration: underline;
-    text-underline-offset: 0.14em;
+  .vsp-{{ section.id }}__back-link {
+    text-decoration: none;
+    display: inline-block;
+    text-transform: none;
+  }
+
+  .vsp-{{ section.id }}__back-link:hover,
+  .vsp-{{ section.id }}__cta-contact:hover {
+    text-decoration: none;
   }
 
   .vsp-{{ section.id }}__back-link:focus-visible {
@@ -68,7 +75,7 @@
     justify-self: center;
     position: relative;
     display: inline-flex;
-    align-items: flex-end;
+    align-items: center;
     width: max-content;
     color: #000;
   }
@@ -76,12 +83,12 @@
   .vsp-{{ section.id }}__nav-wordmark-logos {
     display: flex;
     align-items: center;
-    gap: clamp(6px, 1vw, 15px);
+    gap: clamp(3px, 0.65vw, 8px);
   }
 
   .vsp-{{ section.id }}__nav-wordmark-logo-wrap {
     position: relative;
-    width: clamp(24px, 2.27vw, 44px);
+    width: clamp(13px, 1.35vw, 22px);
   }
 
   .vsp-{{ section.id }}__nav-wordmark-logo {
@@ -97,6 +104,7 @@
 
   .vsp-{{ section.id }}__nav-wordmark-logo--base {
     opacity: 1;
+    filter: brightness(0);
     transition: opacity 140ms ease, filter 220ms ease;
     transition-delay: 0ms, 140ms;
   }
@@ -156,23 +164,6 @@
     opacity: 1;
   }
 
-  .vsp-{{ section.id }}__nav-wordmark-mark {
-    position: absolute;
-    left: 100%;
-    top: 1px;
-    margin-left: 2px;
-    font-size: clamp(8px, 0.45vw, 11px);
-    font-weight: 300;
-    line-height: 1;
-    color: #000;
-    filter: none;
-    user-select: none;
-  }
-
-  .vsp-{{ section.id }}__nav-wordmark:focus-within .vsp-{{ section.id }}__nav-wordmark-mark {
-    filter: none;
-  }
-
   .vsp-{{ section.id }}__nav-right {
     justify-self: end;
     min-width: 0;
@@ -182,12 +173,11 @@
   .vsp-{{ section.id }}__cta {
     margin: 0;
     padding: 0;
-    font-size: clamp(0.88rem, 2.1vw, 1.1rem);
-    line-height: 1.1;
-    text-transform: lowercase;
-    font-weight: 900;
-    font-family: 'Proxima Nova', var(--font-heading-family), Impact, sans-serif;
-    color: #000;
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 0;
+    row-gap: 0;
   }
 
   .vsp-{{ section.id }}__cta-contact {
@@ -203,18 +193,16 @@
     text-decoration: none;
   }
 
-  .vsp-{{ section.id }}__cta-contact:hover {
-    text-decoration: underline;
-    text-underline-offset: 0.12em;
-  }
-
   .vsp-{{ section.id }}__cta-contact:focus-visible {
     outline: 2px solid currentColor;
     outline-offset: 3px;
   }
 
-  .vsp-{{ section.id }}__cta-about {
-    margin-inline-start: 0.45em;
+  .vsp-{{ section.id }}__cta-sep {
+    pointer-events: none;
+    user-select: none;
+    margin: 0;
+    padding: 0;
   }
 
   .vsp-{{ section.id }}__cta-rest {
@@ -652,6 +640,12 @@
   }
 
   @media screen and (max-width: 749px) {
+    .vsp-{{ section.id }}__back-link,
+    .vsp-{{ section.id }}__cta {
+      font-size: clamp(1.22rem, 7.8vw, 2.5rem);
+      line-height: 0.82;
+    }
+
     .vsp-{{ section.id }}__contact-title,
     .vsp-{{ section.id }}__about-title,
     .vsp-{{ section.id }}__about-legal-title {
@@ -771,34 +765,24 @@
           >
         </span>
       </span>
-      <span class="vsp-{{ section.id }}__nav-wordmark-mark" aria-hidden="true">&reg;</span>
     </div>
 
     <div class="vsp-{{ section.id }}__nav-right">
-      <p class="vsp-{{ section.id }}__cta">
-        <button
+      <p class="vsp-{{ section.id }}__cta"><button
           type="button"
           class="vsp-{{ section.id }}__cta-contact"
           id="vsp-contact-trigger-{{ section.id }}"
           aria-expanded="false"
           aria-controls="vsp-contact-dialog-{{ section.id }}"
         >
-          {{- cta_first | default: 'contact' -}}
-        </button>
-        {%- if cta_second != '' -%}
-          <button
-            type="button"
-            class="vsp-{{ section.id }}__cta-contact vsp-{{ section.id }}__cta-about"
-            id="vsp-about-trigger-{{ section.id }}"
-            aria-expanded="false"
-            aria-controls="vsp-about-dialog-{{ section.id }}"
-          >
-            {{- cta_second -}}
-          </button>
-        {%- endif -%}
-        {%- if cta_tail_joined != '' -%}
-          <span class="vsp-{{ section.id }}__cta-rest">{{ cta_tail_joined }}</span>
-        {%- endif -%}
+          {{- cta_first | default: 'contact' -}}</button>{%- if cta_second != '' -%}<span class="vsp-{{ section.id }}__cta-sep" aria-hidden="true">/</span><button
+          type="button"
+          class="vsp-{{ section.id }}__cta-contact"
+          id="vsp-about-trigger-{{ section.id }}"
+          aria-expanded="false"
+          aria-controls="vsp-about-dialog-{{ section.id }}"
+        >
+          {{- cta_second -}}</button>{%- endif -%}{%- if cta_tail_joined != '' -%}<span class="vsp-{{ section.id }}__cta-rest"> {{ cta_tail_joined }}</span>{%- endif -%}
       </p>
     </div>
   </header>
@@ -1105,7 +1089,7 @@
       "type": "text",
       "id": "back_label",
       "label": "Close link text",
-      "default": ">close"
+      "default": "> BACK"
     },
     {
       "type": "url",
@@ -1124,7 +1108,7 @@
       "id": "nav_cta_words",
       "label": "Right side buttons label",
       "default": "contact about",
-      "info": "First word opens contact; second opens about (matched to landing)."
+      "info": "First word opens contact; second opens about. Shown as first/second (e.g. contact/about)."
     },
     {
       "type": "url",

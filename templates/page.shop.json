@@ -4,7 +4,7 @@
       "type": "shop-vampire-inspired",
       "settings": {
         "aria_label": "Shop",
-        "back_label": ">close",
+        "back_label": "> BACK",
         "brand_wordmark": "Hoopers Soul",
         "nav_cta_words": "contact about"
       }

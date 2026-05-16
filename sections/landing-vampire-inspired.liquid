@@ -1,11 +1,36 @@
 {%- style -%}
+  html:has(#shopify-section-{{ section.id }}),
+  body:has(#shopify-section-{{ section.id }}) {
+    overflow: hidden;
+    height: 100%;
+    overscroll-behavior: none;
+  }
+
+  body:has(#shopify-section-{{ section.id }}) #MainContent {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100vh;
+    height: 100dvh;
+    max-height: 100dvh;
+  }
+
   #shopify-section-{{ section.id }} {
     margin: 0;
+    padding: 0;
+    max-width: none;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    max-height: 100dvh;
+    overflow: hidden;
   }
 
   .vampire-landing-{{ section.id }} {
     position: relative;
-    min-height: 100vh;
+    height: 100%;
+    min-height: 0;
+    max-height: 100dvh;
     overflow: hidden;
     background: #000;
     color: #fff;
@@ -308,10 +333,6 @@
   }
 
   @media screen and (max-width: 989px) {
-    .vampire-landing-{{ section.id }} {
-      min-height: 100svh;
-    }
-
     .vampire-landing-{{ section.id }}__small-copy,
     .vampire-landing-{{ section.id }}__corner-copy {
       width: min(17rem, 47vw);
@@ -941,6 +962,20 @@
             elsif bg_ext == 'mov' or bg_ext == 'qt'
               assign bg_mime = 'video/quicktime'
             endif
+
+            assign bg_mp4_asset = ''
+            if bg_ext == 'mp4' or bg_ext == 'm4v'
+              assign bg_mp4_asset = bg_asset
+            elsif bg_ext == 'mov' or bg_ext == 'qt'
+              assign bg_mp4_asset = bg_asset | replace: '.mov', '.mp4' | replace: '.MOV', '.mp4' | replace: '.qt', '.mp4' | replace: '.QT', '.mp4'
+            endif
+
+            assign bg_mov_asset = ''
+            if bg_ext == 'mov' or bg_ext == 'qt'
+              assign bg_mov_asset = bg_asset
+            elsif bg_ext == 'mp4' or bg_ext == 'm4v'
+              assign bg_mov_asset = bg_asset | replace: '.mp4', '.mov' | replace: '.MP4', '.mov' | replace: '.m4v', '.mov' | replace: '.M4V', '.mov'
+            endif
           -%}
           <video
             class="vampire-landing-{{ section.id }}__video-bg-el"
@@ -949,9 +984,17 @@
             playsinline
             loop
             data-pause-all-media-exempt
-            preload="metadata"
+            preload="auto"
           >
-            <source src="{{ bg_asset | asset_url }}" type="{{ bg_mime }}">
+            {%- if bg_mp4_asset != blank -%}
+              <source src="{{ bg_mp4_asset | asset_url }}" type="video/mp4">
+            {%- endif -%}
+            {%- if bg_mov_asset != blank and bg_mov_asset != bg_mp4_asset -%}
+              <source src="{{ bg_mov_asset | asset_url }}" type="video/quicktime">
+            {%- endif -%}
+            {%- if bg_mp4_asset == blank and bg_mov_asset == blank -%}
+              <source src="{{ bg_asset | asset_url }}" type="{{ bg_mime }}">
+            {%- endif -%}
           </video>
         {%- endif -%}
       </div>
@@ -1357,19 +1400,37 @@
     }
 
     if (sectionEl) {
-      sectionEl.querySelectorAll('.vampire-landing-' + sectionId + '__video-bg video').forEach(function (v) {
+      function tryPlayBgVideo(v) {
         v.setAttribute('playsinline', '');
+        v.setAttribute('webkit-playsinline', '');
         v.setAttribute('data-pause-all-media-exempt', '');
         v.muted = true;
+        v.defaultMuted = true;
         v.loop = true;
+        v.playsInline = true;
+        var playPromise = v.play();
+        if (playPromise && playPromise.catch) {
+          playPromise.catch(function () {});
+        }
+      }
+
+      sectionEl.querySelectorAll('.vampire-landing-' + sectionId + '__video-bg video').forEach(function (v) {
         v.addEventListener('ended', function () {
           v.currentTime = 0;
-          var again = v.play();
-          if (again && again.catch) again.catch(function () {});
+          tryPlayBgVideo(v);
         });
-        var playTry = v.play();
-        if (playTry && playTry.catch) playTry.catch(function () {});
+        v.addEventListener('loadeddata', tryPlayBgVideo);
+        v.addEventListener('canplay', tryPlayBgVideo);
+        tryPlayBgVideo(v);
       });
+
+      document.addEventListener(
+        'visibilitychange',
+        function () {
+          if (document.visibilityState !== 'visible') return;
+          sectionEl.querySelectorAll('.vampire-landing-' + sectionId + '__video-bg video').forEach(tryPlayBgVideo);
+        }
+      );
     }
 
     if (!sectionEl) return;
@@ -1378,14 +1439,20 @@
     const trigger = document.getElementById('vampire-contact-trigger-' + sectionId);
     const aboutRoot = document.getElementById('vampire-about-dialog-' + sectionId);
     const aboutTrigger = document.getElementById('vampire-about-trigger-' + sectionId);
+    function lockPageScroll() {
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+    }
+
     function updateBodyOverflow() {
-      var contactOpen = root && root.classList.contains('is-open');
       var aboutOpen = aboutRoot && aboutRoot.classList.contains('is-open');
-      document.documentElement.style.overflow = contactOpen || aboutOpen ? 'hidden' : '';
+      lockPageScroll();
       if (sectionEl) {
         sectionEl.classList.toggle('vampire-landing-about-drawer-open', Boolean(aboutOpen));
       }
     }
+
+    lockPageScroll();
 
     function openDrawer() {
       if (!root) return;
@@ -1520,7 +1587,7 @@
       "id": "background_video_asset",
       "label": "Theme asset filename (fallback)",
       "default": "landing-background.mov",
-      "info": "Must be uploaded to Assets (e.g. landing-background.mp4). .mov works best in Safari; for Chrome desktop, export H.264 .mp4 with the same name."
+      "info": "Upload to Assets. If this is a .mov file, also upload the same video as landing-background.mp4 (H.264) — Chrome and Windows need the .mp4; Safari can use either."
     },
     {
       "type": "range",

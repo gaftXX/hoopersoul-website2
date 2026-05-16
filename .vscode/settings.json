@@ -1,4 +1,7 @@
 {
+  "terminal.integrated.env.osx": {
+    "PATH": "${env:HOME}/.npm-global/bin:${env:PATH}"
+  },
   "editor.formatOnSave": false,
   "[javascript]": {
     "editor.formatOnSave": true,

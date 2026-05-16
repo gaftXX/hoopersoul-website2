@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Runs Shopify CLI from your npm global install (fixes "command not found: shopify").
+set -e
+export PATH="$HOME/.npm-global/bin:$PATH"
+exec shopify theme dev "$@"
